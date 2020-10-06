@@ -11,7 +11,7 @@ Our application will provide simple communication between UMass Dining Commons (
 the NGO's to pick up leftover food from the DC's so the food goes to those in need, rather than getting wasted. Each DC may list \
 the food they have leftover at the end of each day/meal (including quantities, nutrional & allergen information, etc.) and NGO's \
 may specify which food they are interested in picking up from which DC and when they will pick the food up. Once they select the \
-food, it is no longer displayed to the other NGOs, preventing double bookkig. Our application will have a static map that displays \
+food, it is no longer displayed to the other NGOs, preventing double booking. Our application will have a static map that displays \
 DC locations on campus, and NGO's can click on any DC to see the food they have. \
 How it relates to other existing applications: not sure if other similar applications exist, come back to this later.
 
