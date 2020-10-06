@@ -1,5 +1,5 @@
 Team name: chi \
-Application name: TBD
+Application name: DishSaver
 
 Team Overview: \
 Alex Hickey, GitHub: alexhickey09 \
