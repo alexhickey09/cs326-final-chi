@@ -13,7 +13,7 @@ the food they have leftover at the end of each day/meal (including quantities, n
 may specify which food they are interested in picking up from which DC and when they will pick the food up. Once they select the \
 food, it is no longer displayed to the other NGOs, preventing double booking. Our application will have a static map that displays \
 DC locations on campus, and NGO's can click on any DC to see the food they have. \
-How it relates to other existing applications: not sure if other similar applications exist, come back to this later.
+It does not relate to other applications that we are aware of.\
 
 Important Components: \
 The application will allow the two separate parties, DC's and NGO's to each login to the site. After logging in, the DC's may list \
