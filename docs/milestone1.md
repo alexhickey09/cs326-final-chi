@@ -14,3 +14,7 @@ Interactions between users and data:
 * User Data:
     * Users will have to login to use the site.
     * This will give us an email address and password associated with each user.
+    
+Wireframe
+
+![example image](Wireframe.jpg)
