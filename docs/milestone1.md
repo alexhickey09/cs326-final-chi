@@ -22,8 +22,8 @@ Wireframe
 
 
 Division of Labor: \
-Alex Hickey: Wrote milestone1.md, created the following html pages: ngo-choose-dc, ngo-confirmation, ngo-select-food. Did general cleanup/beautification on many other pages. \
-Alex Preston: \
+Alex Hickey: Wrote milestone1.md, made a draft of the wireframe, created the following html pages: ngo-choose-dc, ngo-confirmation, ngo-select-food. Did general cleanup/beautification on many other pages. \
+Alex Preston: Made edits to interactions between users and data, made a draft of the wireframe as well as the final, created all dc.html pages, looked over all pages and made minor changes\
 Roshan: 
 
 Screenshots of HTML Pages:
