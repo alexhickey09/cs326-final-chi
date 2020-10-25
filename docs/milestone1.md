@@ -18,3 +18,45 @@ Interactions between users and data:
 Wireframe
 
 ![example image](Wireframe.jpg)
+
+
+
+Division of Labor: \
+Alex Hickey: Wrote milestone1.md, created the following html pages: ngo-choose-dc, ngo-confirmation, ngo-select-food. Did general cleanup/beautification on many other pages. \
+Alex Preston: \
+Roshan: 
+
+Screenshots of HTML Pages:
+
+dc-add.html \
+img here 
+
+dc-home.html \
+img here 
+
+dc-requests.html \
+img here 
+
+dc-today'sfood.html \
+img here 
+
+dc-update.html \
+img here 
+
+ngo-choose-dc.html \
+img here 
+
+ngo-confirmation.html \
+img here 
+
+ngo-food-list.html \
+img here 
+
+ngo-select-food.html \
+img here 
+
+signin.html \
+img here 
+
+signup.html \
+img here 
