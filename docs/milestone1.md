@@ -29,13 +29,13 @@ Roshan: Made a draft of the wireframe, created signin, signup, ngo-food-list htm
 Screenshots of HTML Pages:
 
 dc-add.html \
-![image](/cs326-final-chi/pictures/dc-add.JPG)
+![image](cs326-final-chi/pictures/dc-add.JPG)
 
 dc-home.html \
-![image](pictures/dc-home.jpg)
+![image](../pictures/dc-home.jpg)
 
 dc-requests.html \
-![image](pictures/dc-requests.jpg)
+![image](/../pictures/dc-requests.jpg)
 
 dc-today'sfood.html \
 ![image](pictures/dc-todaysfood.jpg)
