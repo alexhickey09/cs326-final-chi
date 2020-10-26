@@ -24,39 +24,39 @@ Wireframe
 Division of Labor: \
 Alex Hickey: Wrote milestone1.md, made a draft of the wireframe, created the following html pages: ngo-choose-dc, ngo-confirmation, ngo-select-food. Did general cleanup/beautification on many other pages. \
 Alex Preston: Made edits to interactions between users and data, made a draft of the wireframe as well as the final, created all dc.html pages, looked over all pages and made minor changes\
-Roshan: 
+Roshan: Made a draft of the wireframe, created signin, signup, ngo-food-list html files.
 
 Screenshots of HTML Pages:
 
 dc-add.html \
-img here 
+![image](pictures/dc-add.jpg)
 
 dc-home.html \
-img here 
+![image](pictures/dc-home.jpg)
 
 dc-requests.html \
-img here 
+![image](pictures/dc-requests.jpg)
 
 dc-today'sfood.html \
-img here 
+![image](pictures/dc-todaysfood.jpg)
 
 dc-update.html \
-img here 
+![image](pictures/dc-update.jpg)
 
 ngo-choose-dc.html \
-img here 
+![image](pictures/ngo-choose-dc.jpg)
 
 ngo-confirmation.html \
-img here 
+![image](pictures/ngo-confirmation.jpg)
 
 ngo-food-list.html \
-img here 
+![image](pictures/ngo-food-list.jpg)
 
 ngo-select-food.html \
-img here 
+![image](pictures/ngo-select-food.jpg)
 
 signin.html \
-img here 
+![image](pictures/signin.jpg)
 
 signup.html \
-img here 
+![image](pictures/signup.jpg)
