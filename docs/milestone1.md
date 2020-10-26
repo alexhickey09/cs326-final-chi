@@ -32,7 +32,7 @@ dc-add.html \
 ![image](/html-file-pictures/dc-add.JPG)
 
 dc-home.html \
-![image](html-file-pictures/dc-home.jpg)
+![image](html-file-pictures/dc-home.JPG)
 
 dc-requests.html \
 ![image](pictures/dc-requests.jpg)
