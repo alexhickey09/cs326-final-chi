@@ -29,34 +29,34 @@ Roshan: Made a draft of the wireframe, created signin, signup, ngo-food-list htm
 Screenshots of HTML Pages:
 
 dc-add.html \
-![image](/html-file-pictures/dc-add.JPG)
+![image](html-file-pictures/dc-add.JPG)
 
 dc-home.html \
 ![image](html-file-pictures/dc-home.JPG)
 
 dc-requests.html \
-![image](pictures/dc-requests.jpg)
+![image](html-file-pictures/dc-requests.JPG)
 
 dc-today'sfood.html \
-![image](pictures/dc-todaysfood.jpg)
+![image](html-file-pictures/dc-todaysfood.JPG)
 
 dc-update.html \
-![image](pictures/dc-update.jpg)
+![image](html-file-pictures/dc-update.JPG)
 
 ngo-choose-dc.html \
-![image](pictures/ngo-choose-dc.jpg)
+![image](html-file-pictures/ngo-choose-dc.JPG)
 
 ngo-confirmation.html \
-![image](pictures/ngo-confirmation.jpg)
+![image](html-file-pictures/ngo-confirmation.JPG)
 
 ngo-food-list.html \
-![image](pictures/ngo-food-list.jpg)
+![image](html-file-pictures/ngo-food-list.JPG)
 
 ngo-select-food.html \
-![image](pictures/ngo-select-food.jpg)
+![image](html-file-pictures/ngo-select-food.JPG)
 
 signin.html \
-![image](pictures/signin.jpg)
+![image](html-file-pictures/signin.JPG)
 
 signup.html \
-![image](pictures/signup.jpg)
+![image](html-file-pictures/signup.JPG)
