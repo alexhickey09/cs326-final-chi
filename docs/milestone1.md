@@ -29,10 +29,10 @@ Roshan: Made a draft of the wireframe, created signin, signup, ngo-food-list htm
 Screenshots of HTML Pages:
 
 dc-add.html \
-![image](pictures/dc-add.jpg)
+![image](pictures/dc-add.JPG)
 
 dc-home.html \
-![image](pictures/dc-home.jpg)
+![example image](pictures/dc-home.jpg)
 
 dc-requests.html \
 ![image](pictures/dc-requests.jpg)
