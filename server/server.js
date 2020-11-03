@@ -26,7 +26,7 @@ createServer(async (req, res) => {
         // If the client did not request an API endpoint, we assume we need to fetch a file.
         // This is terrible security-wise, since we don't check the file requested is in the same directory.
         // This will do for our purposes.
-        const filename = parsed.pathname === '/' ? "index.html" : parsed.pathname.replace('/', '');
+        const filename = parsed.pathname === '/' ? "signin.html" : parsed.pathname.replace('/', '');
         const path = join("client/", filename);
         console.log("trying to serve " + path + "...");
         if (existsSync(path)) {
