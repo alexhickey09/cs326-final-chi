@@ -19,7 +19,7 @@ window.addEventListener("load", function() {
     header.appendChild(amountHead);
    
 
-    fetch('http://localhost:8080/viewfood')
+    fetch('https://dishsaver.herokuapp.com/viewfood')
         .then(response => response.json())
         .then(data => {
             console.log(data);
