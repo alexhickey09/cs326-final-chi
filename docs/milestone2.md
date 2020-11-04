@@ -10,3 +10,5 @@
     * /request creates a new food request
     * /viewrequest shows what food has been requested in a chosen request
     * /viewfood shows all available food for a dc
+    * /fulfillrequest removes the indicated request once it is fulfilled
+    * /cancelrequest removes the indicated request and adds the food back into the available
