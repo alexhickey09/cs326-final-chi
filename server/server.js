@@ -8,8 +8,7 @@ if (existsSync("database.json")) {
     database = JSON.parse(readFileSync("database.json"));
 } else {
     database = {
-        wordScores: [],
-        gameScores: []
+        foodlist: []
     };
 }
 
@@ -22,7 +21,7 @@ createServer(async (req, res) => {
         req.on('data', data => body += data);
         req.on('end', () => {
             const data = JSON.parse(body);
-            database.wordScores.push({
+            database.foodlist.push({
                 name: data.name,
                 category: data.category,
                 amount: data.amount,
@@ -37,8 +36,8 @@ createServer(async (req, res) => {
                 }
             });
         });
-    } else if (parsed.pathname === '/endpt2') {
-        console.log("Endpoint 1 reached");
+    } else if (parsed.pathname === '/viewfood') { //GET endpoint
+        res.end(JSON.stringify(database.foodlist));
     } else if (parsed.pathname === '/endpt3') {
         console.log("Endpoint 1 reached");
     } else {
