@@ -16,8 +16,27 @@ if (existsSync("database.json")) {
 createServer(async (req, res) => {
     const parsed = parse(req.url, true);
 
-    if (parsed.pathname === '/endpt1') {
+    if (parsed.pathname === '/addfood') { //POST endpoint
         console.log("Endpoint 1 reached");
+        let body = '';
+        req.on('data', data => body += data);
+        req.on('end', () => {
+            const data = JSON.parse(body);
+            database.wordScores.push({
+                name: data.name,
+                category: data.category,
+                amount: data.amount,
+                nutrition: data.nutrition
+            });
+            
+            writeFile("database.json", JSON.stringify(database), err => {
+                if (err) {
+                    console.err(err);
+                } else {
+                    res.end();
+                }
+            });
+        });
     } else if (parsed.pathname === '/endpt2') {
         console.log("Endpoint 1 reached");
     } else if (parsed.pathname === '/endpt3') {
