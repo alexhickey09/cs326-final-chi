@@ -39,6 +39,8 @@
         }
     },
     "dependencies": {
-        "mongodb": "^3.6.2"
+        "heroku": "^7.47.0",
+        "mongodb": "^3.6.2",
+        "node-forge": "^0.10.0"
     }
 }
