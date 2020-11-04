@@ -41,3 +41,6 @@ window.addEventListener("load", function() {
             }
         });
 });
+document.getElementById("view-selection-button").addEventListener('click', () => {
+    window.location.href = "ngo-confirmation.html";
+});
