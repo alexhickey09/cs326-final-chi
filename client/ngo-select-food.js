@@ -40,6 +40,18 @@ window.addEventListener("load", function() {
                 amount.appendChild(amountText);
             }
         });
+
+    fetch('https://dishsaver.herokuapp.com/viewcontact')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const contact = document.createElement("div");
+            const card = document.createElement("card");
+            contact.appendChild(card);
+            const contactInfo = document.createTextNode(data.join("\n"));
+            contact.appendChild(contactInfo);
+            
+        });
 });
 document.getElementById("view-selection-button").addEventListener('click', () => {
     window.location.href = "ngo-confirmation.html";

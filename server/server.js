@@ -8,7 +8,8 @@ if (existsSync("database.json")) {
     database = JSON.parse(readFileSync("database.json"));
 } else {
     database = {
-        foodlist: []
+        foodlist: [],
+        contact: {}
     };
 }
 
@@ -16,7 +17,6 @@ createServer(async (req, res) => {
     const parsed = parse(req.url, true);
 
     if (parsed.pathname === '/addfood') { //POST endpoint
-        console.log("Endpoint 1 reached");
         let body = '';
         req.on('data', data => body += data);
         req.on('end', () => {
@@ -38,9 +38,23 @@ createServer(async (req, res) => {
         });
     } else if (parsed.pathname === '/viewfood') { //GET endpoint
         res.end(JSON.stringify(database.foodlist));
-    } else if (parsed.pathname === '/endpt3') {
-        console.log("Endpoint 1 reached");
-    } else {
+    } else if (parsed.pathname === '/updatecontact') {
+        let body = '';
+        req.on('data', data => body += data);
+        req.on('end', () => {
+            database.console = JSON.parse(body);
+            
+            writeFile("database.json", JSON.stringify(database), err => {
+                if (err) {
+                    console.err(err);
+                } else {
+                    res.end();
+                }
+            });
+        });
+    } else if (parsed.pathname === '/viewcontact') {
+        res.end(JSON.stringify(database.contact));
+    }else {
         // If the client did not request an API endpoint, we assume we need to fetch a file.
         // This is terrible security-wise, since we don't check the file requested is in the same directory.
         // This will do for our purposes.
