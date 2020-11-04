@@ -1,36 +1,38 @@
 .DC {
-    text-align: center;
+  text-align: center;
 }
 
 .DCbutton {
-    font-size: 80px;
-    width: 150px;
-    height: 180px;
-    margin: 4px 2px;
+  font-size: 80px;
+  width: 150px;
+  height: 180px;
+  margin: 4px 2px;
 }
 
 .btnsquare {
-    margin: 150px 0px;
+  margin: 150px 0px;
 }
 
 .food-item {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .col {
-    text-align: center;
+  text-align: center;
 }
 
 .wdth {
-    width: 36rem;
+  width: 36rem;
 }
 
-.formm {
-    margin: 40px 2px;
+.form {
+  margin: 40px 2px;
 }
 
-.table, th, td {
-    border: 1px solid black;
-    width: 1000px;
-    table-layout: fixed;
+.table,
+th,
+td {
+  border: 1px solid black;
+  width: 1000px;
+  table-layout: fixed;
 }
