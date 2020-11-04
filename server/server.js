@@ -42,7 +42,7 @@ createServer(async (req, res) => {
         let body = '';
         req.on('data', data => body += data);
         req.on('end', () => {
-            database.console = JSON.parse(body);
+            database.contact = JSON.parse(body);
             
             writeFile("database.json", JSON.stringify(database), err => {
                 if (err) {

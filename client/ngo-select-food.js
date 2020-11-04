@@ -22,8 +22,6 @@ window.addEventListener("load", function() {
     fetch('https://dishsaver.herokuapp.com/viewfood')
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            
             for(let i = 0; i < data.length; i++) {
                 const row = table.insertRow();
 

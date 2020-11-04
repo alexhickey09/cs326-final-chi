@@ -1,5 +1,4 @@
 document.getElementById("frankdcbutton").addEventListener('click', () => {
-    console.log("Here");
     window.location.href = "dc-todaysfood.html";
 });
 
