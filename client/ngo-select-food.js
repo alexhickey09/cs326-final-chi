@@ -42,12 +42,21 @@ window.addEventListener("load", function() {
     fetch('https://dishsaver.herokuapp.com/viewcontact')
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            const contact = document.createElement("div");
-            const card = document.createElement("card");
-            contact.appendChild(card);
-            const contactInfo = document.createTextNode(data.join("\n"));
-            contact.appendChild(contactInfo);
+            const contactInfo = document.createElement("h2");
+            contactInfo.innerHTML = "Manager Contact Info";
+            document.body.appendChild(contactInfo);
+
+            const name = document.createElement("div");
+            name.innerHTML = data.name;
+            document.body.appendChild(name);
+
+            const email = document.createElement("div");
+            email.innerHTML = data.email;
+            document.body.appendChild(email);
+
+            const phone = document.createElement("div");
+            phone.innerHTML = data.phone;
+            document.body.appendChild(phone);
             
         });
 });

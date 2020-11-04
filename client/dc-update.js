@@ -3,6 +3,7 @@ document.getElementById("update-contact-button").addEventListener('click', funct
                      "email": document.getElementById("email").value,
                      "phone": document.getElementById("phone").value};
 
+
     fetch('https://dishsaver.herokuapp.com/updatecontact', {
         method: 'POST',
         headers: {
