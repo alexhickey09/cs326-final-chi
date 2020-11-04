@@ -28,3 +28,9 @@
 .formm {
     margin: 40px 2px;
 }
+
+.table, th, td {
+    border: 1px solid black;
+    width: 1000px;
+    table-layout: fixed;
+}
