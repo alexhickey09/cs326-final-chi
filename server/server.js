@@ -54,6 +54,21 @@ createServer(async (req, res) => {
         });
     } else if (parsed.pathname === '/viewcontact') {
         res.end(JSON.stringify(database.contact));
+
+    } else if (parsed.pathname === '/viewrequest') {
+
+    } else if (parsed.pathname === '/request') {
+    
+    } else if (parsed.pathname === '/fulfillrequest') {
+    
+    } else if (parsed.pathname === '/cancelrequest') {
+    
+    } else if (parsed.pathname === '/removefood') {
+        
+    } else if (parsed.pathname === '/register') {
+
+    } else if (parsed.pathname === '/login') {
+
     }else {
         // If the client did not request an API endpoint, we assume we need to fetch a file.
         // This is terrible security-wise, since we don't check the file requested is in the same directory.
