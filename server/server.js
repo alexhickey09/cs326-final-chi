@@ -9,7 +9,8 @@ if (existsSync("database.json")) {
 } else {
     database = {
         foodlist: [],
-        contact: {}
+        contact: {},
+        requests: []
     };
 }
 
@@ -55,10 +56,29 @@ createServer(async (req, res) => {
     } else if (parsed.pathname === '/viewcontact') {
         res.end(JSON.stringify(database.contact));
 
+    } else if (parsed.pathname === '/viewrequests') {
+        res.end(JSON.stringify(database.requests));
+
     } else if (parsed.pathname === '/viewrequest') {
 
     } else if (parsed.pathname === '/request') {
-    
+        let body = '';
+        req.on('data', data => body += data);
+        req.on('end', () => {
+            const data = JSON.parse(body);
+            database.requests.push({
+                name: data.name,
+                food: data.food
+            });
+            
+            writeFile("database.json", JSON.stringify(database), err => {
+                if (err) {
+                    console.err(err);
+                } else {
+                    res.end();
+                }
+            });
+        });
     } else if (parsed.pathname === '/fulfillrequest') {
     
     } else if (parsed.pathname === '/cancelrequest') {
