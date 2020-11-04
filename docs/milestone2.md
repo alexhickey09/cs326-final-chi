@@ -12,3 +12,4 @@
     * /viewfood shows all available food for a dc
     * /fulfillrequest removes the indicated request once it is fulfilled
     * /cancelrequest removes the indicated request and adds the food back into the available
+    * /viewrequests gives all current requests
