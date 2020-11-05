@@ -15,4 +15,5 @@ document.getElementById("addfoodbutton").addEventListener('click', async functio
     var t = document.createTextNode("Choose");
     x.appendChild(t);
     document.body.appendChild(x);
+    window.location.href = "dc-todaysfood.html";
 });
