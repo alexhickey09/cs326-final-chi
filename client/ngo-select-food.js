@@ -51,9 +51,7 @@ window.addEventListener("load", function() {
                 select.type = "button";
                 select.className = "btn btn-secondary";
                 select.innerHTML = "Select";
-                select.onclick = (function selectFood() { 
-                    console.log("Button click number ", i);
-                    console.log(data[i]);
+                select.onclick = (function selectFood() {
                     const selection = {
                         name: data[i].name,
                         category: data[i].category,

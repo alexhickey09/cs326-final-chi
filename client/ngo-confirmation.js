@@ -2,7 +2,6 @@ window.addEventListener("load", function() {
     fetch('https://dishsaver.herokuapp.com/viewrequests')
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             //Making the table and the header row
             const table = document.querySelector("table");
             const thead = table.createTHead();
