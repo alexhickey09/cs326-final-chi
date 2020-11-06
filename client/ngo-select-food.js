@@ -5,21 +5,25 @@ window.addEventListener("load", function() {
     const header = thead.insertRow();
     
     const nameHead = document.createElement("th");
+    nameHead.classList.add("infocol");
     const nameHeadText = document.createTextNode("Name");
     nameHead.appendChild(nameHeadText);
     header.appendChild(nameHead);
 
     const categoryHead = document.createElement("th");
+    categoryHead.classList.add("infocol");
     const categoryHeadText = document.createTextNode("Category");
     categoryHead.appendChild(categoryHeadText);
     header.appendChild(categoryHead);
 
     const amountHead = document.createElement("th");
+    amountHead.classList.add("infocol");
     const amountHeadText = document.createTextNode("Amount");
     amountHead.appendChild(amountHeadText);
     header.appendChild(amountHead);
 
     const selectHead = document.createElement("th");
+    selectHead.classList.add("selectcol");
     const selectHeadText = document.createTextNode("Select");
     selectHead.appendChild(selectHeadText);
     header.appendChild(selectHead);
@@ -45,9 +49,24 @@ window.addEventListener("load", function() {
 
                 const select = row.insertCell();
                 select.type = "button";
-                select.className = "btn btn-primary";
-                select.value = "Select";
-                select.onclick = (function() { console.log("Button click")});
+                select.className = "btn btn-secondary";
+                select.innerHTML = "Select";
+                select.onclick = (function selectFood() { 
+                    console.log("Button click number ", i);
+                    console.log(data[i]);
+                    const selection = {
+                        name: data[i].name,
+                        category: data[i].category,
+                        amount: data[i].amount
+                    };
+                    fetch('http://localhost:8080/request', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                        },
+                        body: JSON.stringify(selection),
+                    });
+                });
             }
         });
 

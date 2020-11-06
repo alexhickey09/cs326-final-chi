@@ -6,11 +6,13 @@ import {writeFile, readFileSync, existsSync} from 'fs';
 let database;
 if (existsSync("database.json")) {
     database = JSON.parse(readFileSync("database.json"));
-} else {
+}
+else {
     database = {
         foodlist: [],
         contact: {},
-        requests: []
+        requests: [],
+        selection: []
     };
 }
 
@@ -37,9 +39,11 @@ createServer(async (req, res) => {
                 }
             });
         });
-    } else if (parsed.pathname === '/viewfood') { //GET endpoint
+    }
+    else if (parsed.pathname === '/viewfood') { //GET endpoint
         res.end(JSON.stringify(database.foodlist));
-    } else if (parsed.pathname === '/updatecontact') {
+    }
+    else if (parsed.pathname === '/updatecontact') {
         let body = '';
         req.on('data', data => body += data);
         req.on('end', () => {
@@ -53,23 +57,24 @@ createServer(async (req, res) => {
                 }
             });
         });
-    } else if (parsed.pathname === '/viewcontact') {
+    }
+    else if (parsed.pathname === '/viewcontact') {
         res.end(JSON.stringify(database.contact));
-
-    } else if (parsed.pathname === '/viewrequests') {
-        res.end(JSON.stringify(database.requests));
-
-    } else if (parsed.pathname === '/viewrequest') {
+    }
+    else if (parsed.pathname === '/viewrequests') { //Views the current request being made
         console.log("View Requests");
-
-    } else if (parsed.pathname === '/request') {
+        console.log(database.selection);
+        res.end(JSON.stringify(database.selection));
+    }
+    else if (parsed.pathname === '/request') { //POST endpoint to add a new request
         let body = '';
         req.on('data', data => body += data);
         req.on('end', () => {
             const data = JSON.parse(body);
-            database.requests.push({
+            database.selection.push({
                 name: data.name,
-                food: data.food
+                category: data.category,
+                amount: data.amount
             });
             
             writeFile("database.json", JSON.stringify(database), err => {
@@ -80,22 +85,28 @@ createServer(async (req, res) => {
                 }
             });
         });
-    } else if (parsed.pathname === '/fulfillrequest') {
+    }
+    else if (parsed.pathname === '/fulfillrequest') {
         console.log("Fulfill Request");
     
-    } else if (parsed.pathname === '/cancelrequest') {
+    }
+    else if (parsed.pathname === '/cancelrequest') {
         console.log("Cancel Request");
     
-    } else if (parsed.pathname === '/removefood') {
+    }
+    else if (parsed.pathname === '/removefood') {
         console.log("Remove Food");
         
-    } else if (parsed.pathname === '/register') {
+    }
+    else if (parsed.pathname === '/register') {
         console.log("Register");
 
-    } else if (parsed.pathname === '/login') {
+    }
+    else if (parsed.pathname === '/login') {
         console.log("Login");
 
-    }else {
+    }
+    else {
         // If the client did not request an API endpoint, we assume we need to fetch a file.
         // This is terrible security-wise, since we don't check the file requested is in the same directory.
         // This will do for our purposes.
