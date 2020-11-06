@@ -62,8 +62,6 @@ createServer(async (req, res) => {
         res.end(JSON.stringify(database.contact));
     }
     else if (parsed.pathname === '/viewrequests') { //Views the current request being made
-        console.log("View Requests");
-        console.log(database.selection);
         res.end(JSON.stringify(database.selection));
     }
     else if (parsed.pathname === '/request') { //POST endpoint to add a new request
