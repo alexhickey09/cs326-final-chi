@@ -12,3 +12,7 @@ document.getElementById("update-contact-button").addEventListener('click', funct
         body: JSON.stringify(contact),
     });
 });
+
+document.getElementById("back-to-food").addEventListener('click', function() {
+    window.location.href = "dc-todaysfood.html";
+});
