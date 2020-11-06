@@ -57,7 +57,7 @@ window.addEventListener("load", function() {
                         category: data[i].category,
                         amount: data[i].amount
                     };
-                    fetch('https://dishsaver.herokuapp.com', {
+                    fetch('https://dishsaver.herokuapp.com/request', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json;charset=utf-8'
@@ -91,4 +91,8 @@ window.addEventListener("load", function() {
 });
 document.getElementById("view-selection-button").addEventListener('click', () => {
     window.location.href = "ngo-confirmation.html";
+});
+
+document.getElementById("back-to-ngo-choose").addEventListener('click', function() {
+    window.location.href = "ngo-choose-dc.html";
 });

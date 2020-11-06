@@ -10,6 +10,10 @@ document.getElementById("requests-button").addEventListener('click', () => {
     window.location.href = "dc-requests.html";
 });
 
+document.getElementById("back-to-dc-home").addEventListener('click', function() {
+    window.location.href = "dc-home.html";
+});
+
 window.addEventListener("load", function() {
     fetch('https://dishsaver.herokuapp.com/viewfood')
         .then(response => response.json())

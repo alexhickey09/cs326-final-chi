@@ -42,3 +42,7 @@ window.addEventListener("load", function() {
             }
         });
 });
+
+document.getElementById("back-to-food-select").addEventListener('click', function() {
+    window.location.href = "ngo-select-food.html";
+});

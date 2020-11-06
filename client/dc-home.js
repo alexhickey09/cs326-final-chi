@@ -13,3 +13,7 @@ document.getElementById("woodcbutton").addEventListener('click', () => {
 document.getElementById("berkdcbutton").addEventListener('click', () => {
     window.location.href = "dc-todaysfood.html";
 });
+
+document.getElementById("back-to-login").addEventListener('click', function() {
+    window.location.href = "signin.html";
+});
