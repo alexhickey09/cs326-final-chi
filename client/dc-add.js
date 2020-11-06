@@ -11,4 +11,9 @@ document.getElementById("addfoodbutton").addEventListener('click', async functio
         },
         body: JSON.stringify(foodItem),
     });
+    window.location.href = "dc-todaysfood.html";
+});
+
+document.getElementById("back-to-food").addEventListener('click', function() {
+    window.location.href = "dc-todaysfood.html";
 });

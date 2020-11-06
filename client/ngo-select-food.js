@@ -57,7 +57,7 @@ window.addEventListener("load", function() {
                         category: data[i].category,
                         amount: data[i].amount
                     };
-                    fetch('https://dishsaver.herokuapp.com/request', {
+                    fetch('https://dishsaver.herokuapp.com', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json;charset=utf-8'

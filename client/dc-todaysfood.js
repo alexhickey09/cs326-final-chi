@@ -14,7 +14,7 @@ window.addEventListener("load", function() {
     fetch('https://dishsaver.herokuapp.com/viewfood')
         .then(response => response.json())
         .then(data => {
-            if(data) {
+            if(data.length > 0) {
                 //Making the table and the header row
                 const table = document.querySelector("table");
                 const thead = table.createTHead();
@@ -55,9 +55,7 @@ window.addEventListener("load", function() {
                 }
             }
             else {
-                const noFood = document.createElement("h2");
-                noFood.innerHTML = "No food has been listed yet."
-                document.body.appendChild(noFood);
+                document.getElementById("todays-food-table").innerHTML = "No food has been listed yet.";
             }
         });
 });
