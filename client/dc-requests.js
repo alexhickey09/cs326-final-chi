@@ -25,12 +25,6 @@ window.addEventListener("load", function() {
     amountHead.appendChild(amountHeadText);
     header.appendChild(amountHead);
 
-    const selectHead = document.createElement("th");
-    selectHead.classList.add("selectcol");
-    const selectHeadText = document.createTextNode("Select");
-    selectHead.appendChild(selectHeadText);
-    header.appendChild(selectHead);
-    
     fetch('https://dishsaver.herokuapp.com/viewrequests')
         .then(response => response.json())
         .then(data => {
