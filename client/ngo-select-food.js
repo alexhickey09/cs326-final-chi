@@ -1,4 +1,5 @@
 window.addEventListener("load", function() {
+    //Making the table and the header row
     const table = document.querySelector("table");
     const thead = table.createTHead();
     const header = thead.insertRow();
@@ -17,8 +18,13 @@ window.addEventListener("load", function() {
     const amountHeadText = document.createTextNode("Amount");
     amountHead.appendChild(amountHeadText);
     header.appendChild(amountHead);
-   
 
+    const selectHead = document.createElement("th");
+    const selectHeadText = document.createTextNode("Select");
+    selectHead.appendChild(selectHeadText);
+    header.appendChild(selectHead);
+   
+    //Making an additional row for each food item that has been listed
     fetch('https://dishsaver.herokuapp.com/viewfood')
         .then(response => response.json())
         .then(data => {
@@ -36,6 +42,12 @@ window.addEventListener("load", function() {
                 const amount = row.insertCell();
                 const amountText = document.createTextNode(data[i].amount);
                 amount.appendChild(amountText);
+
+                const select = row.insertCell();
+                select.type = "button";
+                select.className = "btn btn-primary";
+                select.value = "Select";
+                select.onclick = (function() { console.log("Button click")});
             }
         });
 
