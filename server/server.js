@@ -60,6 +60,7 @@ createServer(async (req, res) => {
         res.end(JSON.stringify(database.requests));
 
     } else if (parsed.pathname === '/viewrequest') {
+        console.log("View Requests");
 
     } else if (parsed.pathname === '/request') {
         let body = '';
@@ -80,14 +81,19 @@ createServer(async (req, res) => {
             });
         });
     } else if (parsed.pathname === '/fulfillrequest') {
+        console.log("Fulfill Request");
     
     } else if (parsed.pathname === '/cancelrequest') {
+        console.log("Cancel Request");
     
     } else if (parsed.pathname === '/removefood') {
+        console.log("Remove Food");
         
     } else if (parsed.pathname === '/register') {
+        console.log("Register");
 
     } else if (parsed.pathname === '/login') {
+        console.log("Login");
 
     }else {
         // If the client did not request an API endpoint, we assume we need to fetch a file.
