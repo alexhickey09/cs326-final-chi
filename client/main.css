@@ -29,18 +29,20 @@
   margin: 40px 2px;
 }
 
-.table,td,th {
+.table,
+td,
+th {
   border: 1px solid black;
   width: 1000px;
   table-layout: fixed;
 }
 
 .infocol {
-  width: 30%
+  width: 30%;
 }
 
 .selectcol {
-  width: 10%
+  width: 10%;
 }
 
 .btn-secondary {

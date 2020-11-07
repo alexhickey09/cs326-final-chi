@@ -50,3 +50,17 @@ document.getElementById("back-to-food-select").addEventListener('click', functio
 document.getElementById("submitreq").addEventListener('click', function() {
     window.location.href = "ngo-select-food.html";
 });
+
+document.getElementById("submitreq").addEventListener('click', async function() {
+    const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, [document.getElementById("name").value,]
+];
+
+    fetch('https://dishsaver.herokuapp.com/viewrequests', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(request),
+    });
+    window.location.href = "ngo-select-food.html";
+});
