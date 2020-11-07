@@ -50,6 +50,7 @@ window.addEventListener("load", function() {
                 const select = row.insertCell();
                 select.type = "checkbox";
                 select.id = "select-id";
+                select.arialabel = "Checkbox for following text input";
                 // select.className = "btn btn-secondary";
                 // select.innerHTML = "Select";
                 select.onclick = (function selectFood() {
