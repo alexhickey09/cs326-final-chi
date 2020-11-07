@@ -51,7 +51,7 @@ window.addEventListener("load", function() {
                 select.type = "checkbox";
                 select.id = "select-id";
                 // select.className = "btn btn-secondary";
-                select.innerHTML = "Select";
+                // select.innerHTML = "Select";
                 select.onclick = (function selectFood() {
                     let count = 1;
                     const selection = {
