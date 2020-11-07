@@ -48,40 +48,11 @@ window.addEventListener("load", function() {
                 amount.appendChild(amountText);
 
                 const select = row.insertCell();
-                select.type = "checkbox";
-                select.id = "select-id";
-                select.arialabel = "Checkbox for following text input";
-                // select.className = "btn btn-secondary";
-                // select.innerHTML = "Select";
+                select.type = "button";
+                select.className = "btn btn-secondary";
+                select.innerHTML = "Select";
                 select.onclick = (function selectFood() {
-                    let count = 1;
-                    const selection = {
-                        name: data[i].name,
-                        category: data[i].category,
-                        amount: data[i].amount
-                    }; 
-                    if(count % 2 !== 0) {
-                        document.getElementById("select-id").checked = true;
-                        fetch('https://dishsaver.herokuapp.com/request', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json;charset=utf-8'
-                        },
-                        body: JSON.stringify(selection),
-                    });
-                        
-                }
-                else {
-                    count = 2;
-                    document.getElementById("select-id").checked = false;
-                    fetch('https://dishsaver.herokuapp.com/request', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json;charset=utf-8'
-                        },
-                        body: JSON.stringify(selection),
-                    });
-                }
+                    
                 });
             }
         });
@@ -108,6 +79,18 @@ window.addEventListener("load", function() {
         });
 });
 document.getElementById("view-selection-button").addEventListener('click', () => {
+    const selection = {
+        name: data[i].name,
+        category: data[i].category,
+        amount: data[i].amount
+    };
+    fetch('https://dishsaver.herokuapp.com/request', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                        },
+                        body: JSON.stringify(selection),
+                    });
     window.location.href = "ngo-confirmation.html";
 });
 
