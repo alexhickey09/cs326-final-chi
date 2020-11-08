@@ -53,10 +53,14 @@ document.getElementById("submitreq").addEventListener('click', function() {
 
 document.getElementById("submitreq").addEventListener('click', async function() {
     let arr = [];
+    fetch('https://dishsaver.herokuapp.com/viewrequests')
+        .then(response => response.json())
+        .then(data => {
     for (let i = 0; i < data.length; i++) {
         arr.push(data[i].name);
     }
-    // const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, [document.getElementById("name").value]];
+});
+    // const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, [document.getElementById("name").value]
     const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, arr
 ];
 
