@@ -1,5 +1,5 @@
 window.addEventListener("load", function() {
-    fetch('https://dishsaver.herokuapp.com/selectfood')
+    fetch('https://dishsaver.herokuapp.com/selectedfood')
         .then(response => response.json())
         .then(data => {
             //Making the table and the header row
@@ -53,7 +53,7 @@ document.getElementById("submitreq").addEventListener('click', function() {
 
 document.getElementById("submitreq").addEventListener('click', async function() {
     let arr = [];
-    fetch('https://dishsaver.herokuapp.com/selectfood')
+    fetch('https://dishsaver.herokuapp.com/selectedfood')
         .then(response => response.json())
         .then(data => {
     for (let i = 0; i < data.length; i++) {
