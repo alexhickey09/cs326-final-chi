@@ -52,7 +52,18 @@ window.addEventListener("load", function() {
                 select.className = "btn btn-secondary";
                 select.innerHTML = "Select";
                 select.onclick = (function selectFood() {
-                    
+                    const selection = {
+                        name: data[i].name,
+                        category: data[i].category,
+                        amount: data[i].amount
+                    };
+                    fetch('https://dishsaver.herokuapp.com/request', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json;charset=utf-8'
+                                        },
+                                        body: JSON.stringify(selection),
+                                    });
                 });
             }
         });
@@ -79,18 +90,6 @@ window.addEventListener("load", function() {
         });
 });
 document.getElementById("view-selection-button").addEventListener('click', () => {
-    const selection = {
-        name: data[i].name,
-        category: data[i].category,
-        amount: data[i].amount
-    };
-    fetch('https://dishsaver.herokuapp.com/request', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json;charset=utf-8'
-                        },
-                        body: JSON.stringify(selection),
-                    });
     window.location.href = "ngo-confirmation.html";
 });
 
