@@ -61,9 +61,13 @@ createServer(async (req, res) => {
     else if (parsed.pathname === '/viewcontact') {
         res.end(JSON.stringify(database.contact));
     }
-    else if (parsed.pathname === '/viewrequests') { //Views the current request being made
+    else if (parsed.pathname === '/selectedfood') { //Views the current request being made
         res.end(JSON.stringify(database.selection));
         // res.end(JSON.stringify(database.requests));
+    }
+    else if (parsed.pathname === '/viewrequests') { //Views the current request being made
+        // res.end(JSON.stringify(database.selection));
+        res.end(JSON.stringify(database.requests));
     }
     else if (parsed.pathname === '/request') { //POST endpoint to add a new request
         let body = '';
