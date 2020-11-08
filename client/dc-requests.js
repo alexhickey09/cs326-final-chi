@@ -45,3 +45,7 @@ window.addEventListener("load", function() {
             }
         });
 });
+
+document.getElementById("confirm-request").addEventListener('click', function() {
+    window.location.href = "dc-requests.html";
+});
