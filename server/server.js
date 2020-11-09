@@ -75,6 +75,15 @@ createServer(async (req, res) => {
             database.requests.push(data); //Adding the request to the DB
 
             //Now, need to delete all the selected food items from the list.
+            const foods = data[2];
+            for(let selectedFoods = 0; selectedFoods < foods.length; selectedFoods++) {
+                for(let allFoods = 0; allFoods < database.foodlist.length; allFoods++) {
+                    if(foods[selectedFoods] === database.foodlist[allFoods].name) {
+                        //Remove the food of index allFoods from foodlist
+                        database.foodlist.splice(allFoods, 1);
+                    }
+                }
+            }
             
             writeFile("database.json", JSON.stringify(database), err => {
                 if (err) {
@@ -91,33 +100,6 @@ createServer(async (req, res) => {
         req.on('end', () => {
             const data = JSON.parse(body);
             database.selection.push(data);
-            
-            writeFile("database.json", JSON.stringify(database), err => {
-                if (err) {
-                    console.err(err);
-                } else {
-                    res.end();
-                }
-            });
-        });
-    }
-
-    else if (parsed.pathname === '/update') {
-        let body = '';
-        req.on('data', data => body += data);
-        req.on('end', () => {
-            const data = JSON.parse(body);
-            // const req = database.requests;
-            for(let i = 0; i < database.selection.length; i++){
-                // const foodlist = data;
-                for(let  j = 0; data.length; j++) {
-                    const index = database.selection.indexOf(data[j]);
-                if (index > -1) {
-                    database.selection.splice(index);
-                  }
-                }
-            }
-            // database.selection.push(data);
             
             writeFile("database.json", JSON.stringify(database), err => {
                 if (err) {
