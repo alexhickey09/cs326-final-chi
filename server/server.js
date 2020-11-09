@@ -84,6 +84,9 @@ createServer(async (req, res) => {
                     }
                 }
             }
+
+            //Finally, we must clear selection so another person may make a request
+            database.selection = [];
             
             writeFile("database.json", JSON.stringify(database), err => {
                 if (err) {
