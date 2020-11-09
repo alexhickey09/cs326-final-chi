@@ -53,8 +53,9 @@ document.getElementById("submitreq").addEventListener('click', async function() 
     fetch('https://dishsaver.herokuapp.com/selectedfood')
         .then(response => response.json())
         .then(data => {
-            for (let i = 0; i < data.length; i++) {
-        arr.push(data[i].name);
+            const foods = JSON.parse(data);
+            for (let i = 0; i < foods.length; i++) {
+        arr.push(foods[i].name);
     }
     });
     console.log(arr);
