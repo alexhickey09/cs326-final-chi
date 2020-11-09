@@ -1,5 +1,5 @@
 window.addEventListener("load", function() {
-    fetch('./selectedfood')
+    fetch('./selectedFood')
         .then(response => response.json())
         .then(data => {
             //Making the table and the header row
@@ -50,7 +50,7 @@ document.getElementById("back-to-food-select").addEventListener('click', functio
 
 document.getElementById("submitreq").addEventListener('click', async function() {
     let arr = [];
-    await fetch('./selectedfood')
+    await fetch('./selectedFood')
         .then(response => response.json())
         .then(data => {
             for (let i = 0; i < data.length; i++) {
@@ -59,21 +59,14 @@ document.getElementById("submitreq").addEventListener('click', async function() 
         });
     
     const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, arr];
+    console.log(request);
 
 
-    fetch('./select', {
+    fetch('./makeRequest', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(request),
-    });
-    
-    fetch('./update', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(arr),
     });
 });

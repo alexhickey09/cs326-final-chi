@@ -61,24 +61,20 @@ createServer(async (req, res) => {
     else if (parsed.pathname === '/viewcontact') {
         res.end(JSON.stringify(database.contact));
     }
-    else if (parsed.pathname === '/selectedfood') { //Views the current request being made
+    else if (parsed.pathname === '/selectedFood') { //Views the current request being made
         res.end(JSON.stringify(database.selection));
-        // res.end(JSON.stringify(database.requests));
     }
     else if (parsed.pathname === '/viewrequests') { //Views the current request being made
-        // res.end(JSON.stringify(database.selection));
         res.end(JSON.stringify(database.requests));
     }
-    else if (parsed.pathname === '/request') { //POST endpoint to add a new request
+    else if (parsed.pathname === '/makeRequest') { //POST endpoint to add a new request
         let body = '';
         req.on('data', data => body += data);
         req.on('end', () => {
             const data = JSON.parse(body);
-            database.selection.push({
-                name: data.name,
-                category: data.category,
-                amount: data.amount
-            });
+            database.requests.push(data); //Adding the request to the DB
+
+            //Now, need to delete all the selected food items from the list.
             
             writeFile("database.json", JSON.stringify(database), err => {
                 if (err) {
@@ -89,12 +85,12 @@ createServer(async (req, res) => {
             });
         });
     }
-    else if (parsed.pathname === '/select') { //POST endpoint to add a new request
+    else if (parsed.pathname === '/addToSelection') { //POST endpoint to add a new request
         let body = '';
         req.on('data', data => body += data);
         req.on('end', () => {
             const data = JSON.parse(body);
-            database.requests.push(data);
+            database.selection.push(data);
             
             writeFile("database.json", JSON.stringify(database), err => {
                 if (err) {

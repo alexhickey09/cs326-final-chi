@@ -66,8 +66,9 @@ window.addEventListener("load", function() {
                 category.appendChild(categoryText);
 
                 const amount = row.insertCell();
-                let foods = data[i][2];
-                const amountText = document.createTextNode(foods.join(','));
+                const foods = data[i][2];
+                const foodsString = foods.join(", ");
+                const amountText = document.createTextNode(foodsString);
                 amount.appendChild(amountText);
 
                 const select = row.insertCell();

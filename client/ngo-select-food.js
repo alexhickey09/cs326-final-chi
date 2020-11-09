@@ -57,13 +57,13 @@ window.addEventListener("load", function() {
                         category: data[i].category,
                         amount: data[i].amount
                     };
-                    fetch('./request', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json;charset=utf-8'
-                                        },
-                                        body: JSON.stringify(selection),
-                                    });
+                    fetch('./addToSelection', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                        },
+                        body: JSON.stringify(selection),
+                    });
                 });
             }
         });
