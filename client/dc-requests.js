@@ -51,15 +51,15 @@ window.addEventListener("load", function() {
                 const row = table.insertRow();
 
                 const name = row.insertCell();
-                const nameText = document.createTextNode(data[i]);
+                const nameText = document.createTextNode(data[i][0]);
                 name.appendChild(nameText);
 
                 const category = row.insertCell();
-                const categoryText = document.createTextNode(data[i]);
+                const categoryText = document.createTextNode(data[i][1]);
                 category.appendChild(categoryText);
 
                 const amount = row.insertCell();
-                const amountText = document.createTextNode(data[i]);
+                const amountText = document.createTextNode(data[i][2].join(','));
                 amount.appendChild(amountText);
             }
         });

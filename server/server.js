@@ -93,8 +93,8 @@ createServer(async (req, res) => {
         let body = '';
         req.on('data', data => body += data);
         req.on('end', () => {
-            // const data = JSON.parse(body);
-            database.requests.push([data[0], data[1], data[2]]);
+            const data = JSON.parse(body);
+            database.requests.push(data);
             
             writeFile("database.json", JSON.stringify(database), err => {
                 if (err) {

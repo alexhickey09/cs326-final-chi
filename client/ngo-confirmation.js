@@ -53,10 +53,10 @@ document.getElementById("submitreq").addEventListener('click', async function() 
     fetch('https://dishsaver.herokuapp.com/selectedfood')
         .then(response => response.json())
         .then(data => {
-    for (let i = 0; i < data.length; i++) {
+            for (let i = 0; i < data.length; i++) {
         arr.push(data[i].name);
     }
-});
+    });
     // const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, [document.getElementById("name").value]
     const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, arr];
 
