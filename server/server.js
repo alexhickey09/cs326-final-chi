@@ -106,40 +106,64 @@ createServer(async (req, res) => {
         });
     }
 
-    // else if (parsed.pathname === '/update') { //POST endpoint to add a new request
-    //     let body = '';
-    //     req.on('data', data => body += data);
-    //     req.on('end', () => {
-    //         const data = JSON.parse(body);
-    //         const req = database.requests;
-    //         for(let i = 0; i < database.selection.length; i++){
-    //             const index = database.selection.indexOf(req[i][2][i]);
-    //             if (index > -1) {
-    //                 database.selection.splice(index);
-    //               }
-    //         }
-    //         database.selection.push(data);
+    else if (parsed.pathname === '/update') {
+        let body = '';
+        req.on('data', data => body += data);
+        req.on('end', () => {
+            const data = JSON.parse(body);
+            // const req = database.requests;
+            for(let i = 0; i < database.selection.length; i++){
+                // const foodlist = data;
+                for(let  j = 0; data.length; j++) {
+                    const index = database.selection.indexOf(data[j]);
+                if (index > -1) {
+                    database.selection.splice(index);
+                  }
+                }
+            }
+            // database.selection.push(data);
             
-    //         writeFile("database.json", JSON.stringify(database), err => {
-    //             if (err) {
-    //                 console.err(err);
-    //             } else {
-    //                 res.end();
-    //             }
-    //         });
-    //     });
-    // }
-
-    else if (parsed.pathname === '/fulfillrequest') {
-        console.log("Fulfill Request");
+            writeFile("database.json", JSON.stringify(database), err => {
+                if (err) {
+                    console.err(err);
+                } else {
+                    res.end();
+                }
+            });
+        });
     }
 
+    else if (parsed.pathname === '/fullfilrequest') {
+        console.log("Fulfill Request");
+        let body = '';
+        req.on('data', data => body += data);
+        req.on('end', () => {
+            const data = JSON.parse(body);
+            // const req = database.requests;
+            for(let i = 0; i < database.requests.length; i++){
+                const index = database.request.indexOf(data[i][0]);
+                if (index > -1) {
+                    database.requests.splice(index);
+                  }
+            }
+            // database.requests.push(data);
+            
+            writeFile("database.json", JSON.stringify(database), err => {
+                if (err) {
+                    console.err(err);
+                } else {
+                    res.end();
+                }
+            });
+        });
+    }
+
+    // Not really needed as of now 
     else if (parsed.pathname === '/cancelrequest') {
         console.log("Cancel Request");
     
     }
     
-    // Not really needed as of now 
     else if (parsed.pathname === '/removefood') {
         console.log("Remove Food");
         

@@ -50,7 +50,7 @@ document.getElementById("back-to-food-select").addEventListener('click', functio
 
 document.getElementById("submitreq").addEventListener('click', async function() {
     let arr = [];
-    fetch('https://dishsaver.herokuapp.com/selectedfood')
+    await fetch('https://dishsaver.herokuapp.com/selectedfood')
         .then(response => response.json())
         .then(data => {
             const foods = JSON.parse(data);
@@ -58,7 +58,6 @@ document.getElementById("submitreq").addEventListener('click', async function() 
         arr.push(foods[i].name);
     }
     });
-    console.log(arr);
     // const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, [document.getElementById("name").value]
     const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, arr];
 
@@ -69,6 +68,14 @@ document.getElementById("submitreq").addEventListener('click', async function() 
             'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(request),
+    });
+    
+    fetch('https://dishsaver.herokuapp.com/update', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(arr),
     });
     window.location.href = "ngo-select-food.html";
 });

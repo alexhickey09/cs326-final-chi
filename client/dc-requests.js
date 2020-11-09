@@ -78,6 +78,14 @@ window.addEventListener("load", function() {
                     table.deleteRow(i+1);
                 });
             }
+
+            fetch('https://dishsaver.herokuapp.com/fullfilrequest', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: JSON.stringify(data),
+    });
         });
 });
 
