@@ -15,7 +15,7 @@ document.getElementById("back-to-dc-home").addEventListener('click', function() 
 });
 
 window.addEventListener("load", function() {
-    fetch('https://dishsaver.herokuapp.com/viewfood')
+    fetch('./viewfood')
         .then(response => response.json())
         .then(data => {
             if(data.length > 0) {

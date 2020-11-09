@@ -1,5 +1,5 @@
 window.addEventListener("load", function() {
-    fetch('https://dishsaver.herokuapp.com/selectedfood')
+    fetch('./selectedfood')
         .then(response => response.json())
         .then(data => {
             //Making the table and the header row
@@ -50,19 +50,18 @@ document.getElementById("back-to-food-select").addEventListener('click', functio
 
 document.getElementById("submitreq").addEventListener('click', async function() {
     let arr = [];
-    await fetch('https://dishsaver.herokuapp.com/selectedfood')
+    await fetch('./selectedfood')
         .then(response => response.json())
         .then(data => {
-            const foods = JSON.parse(data);
-            for (let i = 0; i < foods.length; i++) {
-        arr.push(foods[i].name);
-    }
-    });
-    // const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, [document.getElementById("name").value]
+            for (let i = 0; i < data.length; i++) {
+                arr.push(data[i].name);
+            }
+        });
+    
     const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, arr];
 
 
-    fetch('https://dishsaver.herokuapp.com/select', {
+    fetch('./select', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -70,12 +69,11 @@ document.getElementById("submitreq").addEventListener('click', async function() 
         body: JSON.stringify(request),
     });
     
-    fetch('https://dishsaver.herokuapp.com/update', {
+    fetch('./update', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(arr),
     });
-    window.location.href = "ngo-select-food.html";
 });

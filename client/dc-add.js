@@ -4,7 +4,7 @@ document.getElementById("addfoodbutton").addEventListener('click', async functio
                       "amount": document.getElementById("amount").value,
                       "nutrition": document.getElementById("nutrition").value};
 
-    fetch('https://dishsaver.herokuapp.com/addfood', {
+    fetch('./addfood', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'

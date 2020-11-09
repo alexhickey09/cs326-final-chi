@@ -29,7 +29,7 @@ window.addEventListener("load", function() {
     header.appendChild(selectHead);
    
     //Making an additional row for each food item that has been listed
-    fetch('https://dishsaver.herokuapp.com/viewfood')
+    fetch('./viewfood')
         .then(response => response.json())
         .then(data => {
             for(let i = 0; i < data.length; i++) {
@@ -57,7 +57,7 @@ window.addEventListener("load", function() {
                         category: data[i].category,
                         amount: data[i].amount
                     };
-                    fetch('https://dishsaver.herokuapp.com/request', {
+                    fetch('./request', {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json;charset=utf-8'
@@ -68,7 +68,7 @@ window.addEventListener("load", function() {
             }
         });
 
-    fetch('https://dishsaver.herokuapp.com/viewcontact')
+    fetch('./viewcontact')
         .then(response => response.json())
         .then(data => {
             const contactInfo = document.createElement("h2");

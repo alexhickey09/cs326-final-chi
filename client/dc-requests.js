@@ -32,7 +32,7 @@ window.addEventListener("load", function() {
     header.appendChild(selectHead);
    
 
-    // fetch('https://dishsaver.herokuapp.com/viewrequests')
+    // fetch('./viewrequests')
     //     .then(response => response.json())
     //     .then(data => {
     //         for(let i = 0; i < data.length; i++) {
@@ -52,7 +52,7 @@ window.addEventListener("load", function() {
     //         }
     //     });
     
-    fetch('https://dishsaver.herokuapp.com/viewrequests').then(response => response.json())
+    fetch('./viewrequests').then(response => response.json())
         .then(data => {
             for(let i = 0; i < data.length; i++) {
                 const row = table.insertRow();
@@ -79,7 +79,7 @@ window.addEventListener("load", function() {
                 });
             }
 
-            fetch('https://dishsaver.herokuapp.com/fullfilrequest', {
+            fetch('./fullfilrequest', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8'
@@ -88,7 +88,3 @@ window.addEventListener("load", function() {
     });
         });
 });
-
-// document.getElementById("confirm-request").addEventListener('click', function() {
-//     window.location.href = "dc-requests.html";
-// });

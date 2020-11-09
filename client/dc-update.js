@@ -4,7 +4,7 @@ document.getElementById("update-contact-button").addEventListener('click', funct
                      "phone": document.getElementById("phone").value};
 
 
-    fetch('https://dishsaver.herokuapp.com/updatecontact', {
+    fetch('./updatecontact', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
