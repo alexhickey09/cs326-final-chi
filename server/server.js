@@ -94,7 +94,7 @@ createServer(async (req, res) => {
         req.on('data', data => body += data);
         req.on('end', () => {
             // const data = JSON.parse(body);
-            database.requests.push(body[0], body[1],body[2]);
+            database.requests.push(body[0], body[1], body[2]);
             
             writeFile("database.json", JSON.stringify(database), err => {
                 if (err) {

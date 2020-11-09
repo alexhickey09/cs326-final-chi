@@ -61,8 +61,7 @@ document.getElementById("submitreq").addEventListener('click', async function() 
     }
 });
     // const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, [document.getElementById("name").value]
-    const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, arr
-];
+    const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, arr];
 
 
     fetch('https://dishsaver.herokuapp.com/select', {
