@@ -8,19 +8,19 @@ window.addEventListener("load", function() {
     const header = thead.insertRow();
     
     const nameHead = document.createElement("th");
-    nameHead.classList.add("infocol");
+    nameHead.classList.add("namecol");
     const nameHeadText = document.createTextNode("NGO Name");
     nameHead.appendChild(nameHeadText);
     header.appendChild(nameHead);
 
     const categoryHead = document.createElement("th");
-    categoryHead.classList.add("infocol");
-    const categoryHeadText = document.createTextNode("Pick-Time");
+    categoryHead.classList.add("pickupcol");
+    const categoryHeadText = document.createTextNode("Pickup Time");
     categoryHead.appendChild(categoryHeadText);
     header.appendChild(categoryHead);
 
     const amountHead = document.createElement("th");
-    amountHead.classList.add("infocol");
+    amountHead.classList.add("foodcol");
     const amountHeadText = document.createTextNode("Foods Requested");
     amountHead.appendChild(amountHeadText);
     header.appendChild(amountHead);
@@ -30,29 +30,9 @@ window.addEventListener("load", function() {
     const selectHeadText = document.createTextNode("Select");
     selectHead.appendChild(selectHeadText);
     header.appendChild(selectHead);
-   
-
-    // fetch('./viewrequests')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         for(let i = 0; i < data.length; i++) {
-    //             const row = table.insertRow();
-
-    //             const name = row.insertCell();
-    //             const nameText = document.createTextNode(data[i].name);
-    //             name.appendChild(nameText);
-
-    //             const category = row.insertCell();
-    //             const categoryText = document.createTextNode(data[i].category);
-    //             category.appendChild(categoryText);
-
-    //             const amount = row.insertCell();
-    //             const amountText = document.createTextNode(data[i].amount);
-    //             amount.appendChild(amountText);
-    //         }
-    //     });
     
-    fetch('./viewrequests').then(response => response.json())
+    fetch('./viewrequests')
+        .then(response => response.json())
         .then(data => {
             for(let i = 0; i < data.length; i++) {
                 const row = table.insertRow();
@@ -75,17 +55,15 @@ window.addEventListener("load", function() {
                 select.type = "button";
                 select.className = "btn btn-secondary";
                 select.innerHTML = "Fullfil";
-                select.onclick = (function selectFood() {
-                    table.deleteRow(i+1);
+                select.onclick = (function selectFood() {//this needs to be fixed...
+                    fetch('./fulfillRequest', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                        },
+                        body: JSON.stringify(data[i][0]), //Passes in the name of the NGO making the request
+                    });
                 });
             }
-
-            fetch('./fullfilrequest', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json;charset=utf-8'
-                    },
-                    body: JSON.stringify(data),
-    });
         });
 });

@@ -114,20 +114,16 @@ createServer(async (req, res) => {
         });
     }
 
-    else if (parsed.pathname === '/fullfilrequest') {
-        console.log("Fulfill Request");
+    else if (parsed.pathname === '/fulfillRequest') {
         let body = '';
         req.on('data', data => body += data);
         req.on('end', () => {
-            const data = JSON.parse(body);
-            // const req = database.requests;
+            const name = JSON.parse(body);
             for(let i = 0; i < database.requests.length; i++){
-                const index = database.request.indexOf(data[i][0]);
-                if (index > -1) {
-                    database.requests.splice(index);
-                  }
+                if(database.requests[i][0] === name) {
+                    database.requests.splice(i, 1);
+                }
             }
-            // database.requests.push(data);
             
             writeFile("database.json", JSON.stringify(database), err => {
                 if (err) {

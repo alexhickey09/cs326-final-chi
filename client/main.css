@@ -45,6 +45,18 @@ th {
   width: 10%;
 }
 
+.namecol {
+  width: 20%;
+}
+
+.pickupcol {
+  width: 10%;
+}
+
+.foodcol {
+  width: 60%;
+}
+
 .btn-secondary {
   width: 100%;
   height: 100%;

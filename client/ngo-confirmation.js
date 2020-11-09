@@ -59,8 +59,6 @@ document.getElementById("submitreq").addEventListener('click', async function() 
         });
     
     const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, arr];
-    console.log(request);
-
 
     fetch('./makeRequest', {
         method: 'POST',
