@@ -14,24 +14,24 @@
 
 
     Create
-    ![image](html-file-pictures/Create Food 1)
-    ![image](html-file-pictures/Create Food 2)
+    ![image](html-file-pictures/Create Food 1.png)
+    ![image](html-file-pictures/Create Food 2.png)
 
     Upon confirming the details of a food that food is then added to the list of available food.
 
     Read
-    ![image](html-file-pictures/Read Requests)
+    ![image](html-file-pictures/Read Requests.png)
 
     Upon clicking the view requests button in the dc interface it gives a list of all requests with their name, time of pickup, and food requested.
 
     Update
-    ![image](html-file-pictures/Update Contact 1)
-    ![image](html-file-pictures/Update Contact 2)
+    ![image](html-file-pictures/Update Contact 1.png)
+    ![image](html-file-pictures/Update Contact 2.png)
 
     When you confirm the contact details it will update the contact info on the NGO page.
 
     Delete
-    ![image](html-file-pictures/Delete Request 1)
-    ![image](html-file-pictures/Delete Request 2)
+    ![image](html-file-pictures/Delete Request 1.png)
+    ![image](html-file-pictures/Delete Request 2.png)
 
     When you click the fulfill button it will remove the request from the list of requests.
