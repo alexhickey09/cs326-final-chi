@@ -35,3 +35,8 @@
     ![image](html-file-pictures/Delete-Request-2.png) 
 
     When you click the fulfill button it will remove the request from the list of requests. 
+
+Division of Labor: \
+Alex Preston: Made milestone2 doc and added endpoints and screenshots to it. Added skeleton of endpoints to server.js, implemented some endpoints, helped with various js making use of endpoints for functionality.
+Alex Hickey:
+Roshan Shetty:
