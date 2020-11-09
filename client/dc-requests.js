@@ -75,7 +75,7 @@ window.addEventListener("load", function() {
                 select.className = "btn btn-secondary";
                 select.innerHTML = "Fullfil";
                 select.onclick = (function selectFood() {
-                    table.deleteRow();
+                    table.deleteRow(i);
                 });
             }
         });
