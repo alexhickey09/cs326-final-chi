@@ -47,9 +47,6 @@ document.getElementById("back-to-food-select").addEventListener('click', functio
     window.location.href = "ngo-select-food.html";
 });
 
-document.getElementById("submitreq").addEventListener('click', function() {
-    window.location.href = "ngo-select-food.html";
-});
 
 document.getElementById("submitreq").addEventListener('click', async function() {
     let arr = [];
