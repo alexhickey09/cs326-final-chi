@@ -64,7 +64,7 @@ createServer(async (req, res) => {
     else if (parsed.pathname === '/selectedFood') { //Views the current request being made
         res.end(JSON.stringify(database.selection));
     }
-    else if (parsed.pathname === '/viewrequests') { //Views the current request being made
+    else if (parsed.pathname === '/viewrequests') { //Views the current requests being made
         res.end(JSON.stringify(database.requests));
     }
     else if (parsed.pathname === '/makeRequest') { //POST endpoint to add a new request
@@ -97,7 +97,7 @@ createServer(async (req, res) => {
             });
         });
     }
-    else if (parsed.pathname === '/addToSelection') { //POST endpoint to add a new request
+    else if (parsed.pathname === '/addToSelection') { //POST endpoint to add food to current request
         let body = '';
         req.on('data', data => body += data);
         req.on('end', () => {
@@ -113,7 +113,6 @@ createServer(async (req, res) => {
             });
         });
     }
-
     else if (parsed.pathname === '/fulfillRequest') {
         let body = '';
         req.on('data', data => body += data);
@@ -133,17 +132,6 @@ createServer(async (req, res) => {
                 }
             });
         });
-    }
-
-    // Not really needed as of now 
-    else if (parsed.pathname === '/cancelrequest') {
-        console.log("Cancel Request");
-    
-    }
-    
-    else if (parsed.pathname === '/removefood') {
-        console.log("Remove Food");
-        
     }
     else if (parsed.pathname === '/register') {
         console.log("Register");
