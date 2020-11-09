@@ -16,24 +16,24 @@
     The 4 aspects of this project are:
 
 
-    **## 1. Create** - Upon confirming the details of a food that food is then added to the list of available food.  \
+    ## 1. Create - Upon confirming the details of a food that food is then added to the list of available food.  \
     ![image](html-file-pictures/Create-Food-1.png) \
     ![image](html-file-pictures/Create-Food-2.png) 
 
     
 
-    **## 2. Read** - Upon clicking the view requests button in the dc interface it gives a list of all requests with their name, time of pickup, and food requested. \
+    ## 2. Read - Upon clicking the view requests button in the dc interface it gives a list of all requests with their name, time of pickup, and food requested. \
     ![image](html-file-pictures/Read-Requests.png)
 
      
 
-    **## 3. Update** -  When you confirm the contact details it will update the contact info on the NGO page. 
+    ## 3. Update -  When you confirm the contact details it will update the contact info on the NGO page. 
     ![image](html-file-pictures/Update-Contact-1.png) \
     ![image](html-file-pictures/Update-Contact-2.png) 
 
    
 
-    **## 4. Delete** - When you click the fulfill button it will remove the request from the list of requests.  \
+    ## 4. Delete - When you click the fulfill button it will remove the request from the list of requests.  \
     ![image](html-file-pictures/Delete-Request-1.png) \
     ![image](html-file-pictures/Delete-Request-2.png) 
 
@@ -44,5 +44,6 @@
 *Alex Hickey:
 *Roshan Shetty: Helped with various js making use of endpoints for functionality. Made certain changes to the html files, setup.md, and milestone.md 
 
-Heroku Application Link: \
-https://dishsaver.herokuapp.com/
+## Heroku Application Link: \
+[https://dishsaver.herokuapp.com/](https://dishsaver.herokuapp.com/)
+
