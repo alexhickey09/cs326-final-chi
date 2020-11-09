@@ -14,13 +14,13 @@
 
 
     Create \
-    ![image](html-file-pictures/Create Food 1.png) \
+    ![image](html-file-pictures/Create-Food-1.png) \
     ![image](html-file-pictures/Create Food 2.png) 
 
     Upon confirming the details of a food that food is then added to the list of available food. 
 
     Read \
-    ![image](html-file-pictures/Read Requests.png) \
+    ![image](html-file-pictures/Read Requests.png)
 
     Upon clicking the view requests button in the dc interface it gives a list of all requests with their name, time of pickup, and food requested. 
 
