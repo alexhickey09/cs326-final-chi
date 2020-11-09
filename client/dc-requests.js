@@ -25,6 +25,13 @@ window.addEventListener("load", function() {
     amountHead.appendChild(amountHeadText);
     header.appendChild(amountHead);
 
+    const selectHead = document.createElement("th");
+    selectHead.classList.add("selectcol");
+    const selectHeadText = document.createTextNode("Select");
+    selectHead.appendChild(selectHeadText);
+    header.appendChild(selectHead);
+   
+
     // fetch('https://dishsaver.herokuapp.com/viewrequests')
     //     .then(response => response.json())
     //     .then(data => {
@@ -59,12 +66,21 @@ window.addEventListener("load", function() {
                 category.appendChild(categoryText);
 
                 const amount = row.insertCell();
-                const amountText = document.createTextNode(data[i][2].join(','));
+                let foods = data[i][2];
+                const amountText = document.createTextNode(foods.join(''));
                 amount.appendChild(amountText);
+
+                const select = row.insertCell();
+                select.type = "button";
+                select.className = "btn btn-secondary";
+                select.innerHTML = "Select";
+                select.onclick = (function selectFood() {
+                    document.querySelector("table").deleteRow();
+                });
             }
         });
 });
 
-document.getElementById("confirm-request").addEventListener('click', function() {
-    window.location.href = "dc-requests.html";
-});
+// document.getElementById("confirm-request").addEventListener('click', function() {
+//     window.location.href = "dc-requests.html";
+// });
