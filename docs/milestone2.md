@@ -10,8 +10,8 @@
     * `/viewfood shows` all available food for a dc
     * `/fulfillrequest` removes the indicated request once it is fulfilled
     * `/viewrequests` gives all current requests
-    * /selectedFood gives the food currently being requested
-    * /addToSelection adds the current selected food to the list of food for the current request
+    * `/selectedFood` gives the food currently being requested
+    * `/addToSelection` adds the current selected food to the list of food for the current request
     
     # Major Changes to the project:
 
