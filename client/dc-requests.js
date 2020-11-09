@@ -73,7 +73,7 @@ window.addEventListener("load", function() {
                 const select = row.insertCell();
                 select.type = "button";
                 select.className = "btn btn-secondary";
-                select.innerHTML = "Select";
+                select.innerHTML = "Fullfil";
                 select.onclick = (function selectFood() {
                     table.deleteRow();
                 });
