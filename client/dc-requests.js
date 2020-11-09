@@ -67,7 +67,7 @@ window.addEventListener("load", function() {
 
                 const amount = row.insertCell();
                 let foods = data[i][2];
-                const amountText = document.createTextNode(foods.join(''));
+                const amountText = document.createTextNode(foods.join(','));
                 amount.appendChild(amountText);
 
                 const select = row.insertCell();
@@ -75,7 +75,7 @@ window.addEventListener("load", function() {
                 select.className = "btn btn-secondary";
                 select.innerHTML = "Select";
                 select.onclick = (function selectFood() {
-                    document.querySelector("table").deleteRow();
+                    table.deleteRow();
                 });
             }
         });
