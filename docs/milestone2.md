@@ -1,4 +1,5 @@
-*   API Planning:
+#Milestone 2: 
+*   ##API Planning:
     * /login allows users to login   
     * /register allows new users to signup
     * /addfood posts a new food to the list requires the dc, nutritional information, quantities
@@ -38,10 +39,10 @@
 
     
 
-Division of Labor: \
-Alex Preston: Made milestone2 doc and added endpoints and screenshots to it. Added skeleton of endpoints to server.js, implemented some endpoints, helped with various js making use of endpoints for functionality.
-Alex Hickey:
-Roshan Shetty: Helped with various js making use of endpoints for functionality. Made certain changes to the html files 
+##Division of Labor: \
+*Alex Preston: Made milestone2 doc and added endpoints and screenshots to it. Added skeleton of endpoints to server.js, implemented some endpoints, helped with various js making use of endpoints for functionality.
+*Alex Hickey:
+*Roshan Shetty: Helped with various js making use of endpoints for functionality. Made certain changes to the html files, setup.md, and milestone.md 
 
 Heroku Application Link: \
 https://dishsaver.herokuapp.com/
