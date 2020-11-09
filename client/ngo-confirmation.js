@@ -65,7 +65,7 @@ document.getElementById("submitreq").addEventListener('click', async function() 
 ];
 
 
-    fetch('https://dishsaver.herokuapp.com/viewrequests', {
+    fetch('https://dishsaver.herokuapp.com/select', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'

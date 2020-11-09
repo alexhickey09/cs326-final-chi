@@ -89,6 +89,22 @@ createServer(async (req, res) => {
             });
         });
     }
+    else if (parsed.pathname === '/select') { //POST endpoint to add a new request
+        let body = '';
+        req.on('data', data => body += data);
+        req.on('end', () => {
+            // const data = JSON.parse(body);
+            database.requests.push(body[0], body[1],body[2]);
+            
+            writeFile("database.json", JSON.stringify(database), err => {
+                if (err) {
+                    console.err(err);
+                } else {
+                    res.end();
+                }
+            });
+        });
+    }
     else if (parsed.pathname === '/fulfillrequest') {
         console.log("Fulfill Request");
     }
