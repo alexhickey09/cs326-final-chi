@@ -5,13 +5,12 @@ const bodyParser = require('body-parser');
 
 let secrets, username, password;
 if (!process.env.PASSWORD) {
-    secrets = require('secrets.json');
+    secrets = require('../secrets.json');
     username = secrets.username;
     password = secrets.password;
 } else {
 	password = process.env.PASSWORD;
 }
-
 
 const url = `mongodb+srv://${username}:${password}@dishsaver.knahq.mongodb.net/DishSaver?retryWrites=true&w=majority`;
 const client = new MongoClient(url, { useUnifiedTopology: true });

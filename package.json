@@ -1,6 +1,5 @@
 {
     "name": "dishsaver",
-    "type": "module",
     "scripts": {
         "start": "node server/index.js",
         "lint": "eslint client/ server/"
@@ -39,6 +38,7 @@
         }
     },
     "dependencies": {
+        "cors": "^2.8.5",
         "express": "^4.17.1",
         "heroku": "^7.47.0",
         "mongodb": "^3.6.3",
