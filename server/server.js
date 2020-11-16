@@ -1,4 +1,97 @@
-import {createServer} from 'http';
+const join = require("path").join;
+const express = require("express");
+const { MongoClient } = require("mongodb");
+const bodyParser = require('body-parser');
+
+let secrets, username, password;
+if (!process.env.PASSWORD) {
+    secrets = require('secrets.json');
+    username = secrets.username;
+    password = secrets.password;
+} else {
+	password = process.env.PASSWORD;
+}
+
+
+const url = `mongodb+srv://${username}:${password}@dishsaver.knahq.mongodb.net/DishSaver?retryWrites=true&w=majority`;
+const client = new MongoClient(url, { useUnifiedTopology: true });
+
+const dbName = "DishSaver";
+
+const app = express();
+app.use(require("cors")());
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(express.json());
+
+
+client.connect((err) => {
+    if (err) { 
+        throw err;
+    }
+    const db = client.db(dbName);
+    let collection;
+
+
+    app.post("/addfood", (req, res) => {
+        console.log("addfood");
+    });
+
+    app.get("/viewfood", (req, res) => {
+        console.log("viewfood");
+    });
+
+    app.put("/updatecontact", (req, res) => {
+        console.log("updatecontact");
+    });
+
+    app.get("/viewcontact", (req, res) => {
+        console.log("viewcontact");
+    });
+
+    app.get("/selectedFood", (req, res) => {
+        console.log("selectedFood");
+    });
+
+    app.get("/viewrequests", (req, res) => {
+        console.log("viewrequests");
+    });
+
+    app.post("/makeRequest", (req, res) => {
+        console.log("makeRequest");
+    });
+
+    app.post("/addToSelection", (req, res) => {
+        console.log("addToSelection");
+    });
+
+    app.post("/fulfillRequest", (req, res) => {
+        console.log("addfood");
+    });
+
+    app.post("/register", (req, res) => { //POST endpoint may not be correct
+        console.log("register");
+    });
+
+    app.post("/login", (req, res) => { //POST endpoint may not be correct
+        console.log("login");
+    });
+
+    app.get("/", (req, res) => {
+        res.sendFile(join(__dirname, "/../client/index.html"));
+    });
+
+    app.use('/', express.static(__dirname + '/../client'));
+});
+
+app.listen(process.env.PORT || 8080);
+
+
+//Below is all of our original server code, pre-MongoDB
+
+/*import {createServer} from 'http';
 import {parse} from 'url';
 import {join} from 'path';
 import {writeFile, readFileSync, existsSync} from 'fs';
@@ -167,3 +260,4 @@ createServer(async (req, res) => {
         }
     }
 }).listen(process.env.PORT || 8080);
+*/
