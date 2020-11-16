@@ -35,11 +35,33 @@ client.connect((err) => {
 
 
     app.post("/addfood", (req, res) => {
-        console.log("addfood");
+        collection = db.collection("food");
+        const foodItem = {
+            name: req.body.name,
+            category: req.body.category,
+            amount: req.body.amount,
+            nutrition: req.body.nutrition
+        };
+        collection.insertOne(foodItem, (err) => {
+            if(err) {
+                res.send("Error with addfood POST request");
+            }
+            else {
+                res.send("Information has been passed successfully");
+            }
+        });
     });
 
-    app.get("/viewfood", (req, res) => {
-        console.log("viewfood");
+    app.get("/viewfood", (res) => {
+        collection = db.collection("food");
+        collection.find({}).toArray((err, docs) => {
+            if(err) {
+                res.send("Error with viewfood GET request");
+            }
+            else {
+                res.send(docs);
+            }
+        });
     });
 
     app.put("/updatecontact", (req, res) => {
