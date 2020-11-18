@@ -2,6 +2,10 @@ const join = require("path").join;
 const express = require("express");
 const { MongoClient } = require("mongodb");
 const bodyParser = require('body-parser');
+const expressSession = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const minicrypt = require('./miniCrypt');
 
 let secrets, username, password;
 if (!process.env.PASSWORD) {
@@ -108,22 +112,143 @@ client.connect((err) => {
         console.log("addfood");
     });
 
-    app.post("/register", (req, res) => { //POST endpoint may not be correct
-        console.log("register");
-    });
-
-    app.post("/login", (req, res) => { //POST endpoint may not be correct
-        console.log("login");
-    });
-
     app.get("/", (req, res) => {
         res.sendFile(join(__dirname, "/../client/index.html"));
     });
 
     app.use('/', express.static(__dirname + '/../client'));
+​
+    app.post('/login',
+        passport.authenticate('local' , {   
+            'successRedirect' : '/private',   
+            'failureRedirect' : '/login'      
+        }));
+​
+    app.get('/login',
+        (req, res) => res.sendFile('client/index.html',
+                    { 'root' : __dirname }));
+​
+    app.get('/logout', (req, res) => {
+        req.logout();
+        res.redirect('/login');
+    });
+​
+    app.post('/register',
+        (req, res) => {
+            const username = req.body['username'];
+            const password = req.body['password'];
+            if (addUser(username, password)) {
+            res.redirect('/login');
+            } else {
+            res.redirect('/register');
+            }
+        });
+​
+    app.get('/register',
+        (req, res) => res.sendFile('client/signup.html',
+                    { 'root' : __dirname }));
+​
+    app.get('/private',
+        checkLoggedIn,
+        (req, res) => {
+            res.redirect('/private/' + req.user);
+        });
+​
+
+    app.get('/private/:userID/',
+        checkLoggedIn,
+        (req, res) => {
+            if (req.params.userID === req.user) {
+            res.writeHead(200, {"Content-Type" : "text/html"});
+            res.write('<H1>HELLO ' + req.params.userID + "</H1>");
+            res.write('<br/><a href="/logout">click here to logout</a>');
+            res.end();
+            } else {
+            res.redirect('/private/');
+            }
+        });
+
+    app.use(express.static('html'));
+​
+    app.get('*', (req, res) => {
+    res.send('Error');
+    });
 });
 
 app.listen(process.env.PORT || 8080);
+
+const users = {};
+//Login/signup stuff
+const mc = new minicrypt();
+
+const session = {
+    secret : process.env.SECRET || 'SECRET',
+    resave : false,
+    saveUninitialized: false
+};
+​
+const strategy = new LocalStrategy(
+    async (username, password, done) => {
+	if (!findUser(username)) {
+	    return done(null, false, { 'message' : 'Wrong username' });
+	}
+	if (!validatePassword(username, password)) {
+	    await new Promise((r) => setTimeout(r, 2000));
+	    return done(null, false, { 'message' : 'Wrong password' });
+	}
+	return done(null, username);
+    });
+​
+app.use(expressSession(session));
+passport.use(strategy);
+app.use(passport.initialize());
+app.use(passport.session());
+​
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
+passport.deserializeUser((uid, done) => {
+    done(null, uid);
+});
+​
+app.use(express.json())
+app.use(express.urlencoded({'extended' : true}));
+​
+function findUser(username) {
+    if (!users[username]) {
+	return false;
+    } else {
+	return true;
+    }
+}
+
+function validatePassword(name, pwd) {
+    if (!findUser(name)) {
+	return false;
+    }
+    if (!mc.check(pwd, users[name][0], users[name][1])) {
+	return false;
+    }
+    return true;
+}
+​
+function addUser(name, pwd) {
+    if (findUser(name)) {
+	return false;
+    }
+    const [salt, hash] = mc.hash(pwd);
+    users[name] = [salt, hash];
+    return true;
+}
+​
+function checkLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+	next();
+    } else {
+	res.redirect('/login');
+    }
+}
+
 
 
 //Below is all of our original server code, pre-MongoDB
