@@ -52,7 +52,7 @@ client.connect((err) => {
         });
     });
 
-    app.get("/viewfood", (res) => {
+    app.get("/viewfood", (req, res) => { //Note: first parameter has to be req even though it isn't used
         collection = db.collection("food");
         collection.find({}).toArray((err, docs) => {
             if(err) {
@@ -64,8 +64,21 @@ client.connect((err) => {
         });
     });
 
-    app.put("/updatecontact", (req, res) => {
-        console.log("updatecontact");
+    app.post("/updatecontact", (req, res) => { //May need to be app.put
+        collection = db.collection("contact");
+        const contact = {
+            name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone
+        };
+        collection.insertOne(contact, (err) => {
+            if(err) {
+                res.send("Error with updatecontact POST request");
+            }
+            else {
+                res.send("Information has been passed successfully");
+            }
+        });
     });
 
     app.get("/viewcontact", (req, res) => {
