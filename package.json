@@ -1,7 +1,7 @@
 {
     "name": "dishsaver",
     "scripts": {
-        "start": "node server/index.js",
+        "start": "node server/server.js",
         "lint": "eslint client/ server/"
     },
     "devDependencies": {
@@ -40,8 +40,11 @@
     "dependencies": {
         "cors": "^2.8.5",
         "express": "^4.17.1",
+        "express-session": "^1.17.1",
         "heroku": "^7.47.0",
         "mongodb": "^3.6.3",
-        "node-forge": "^0.10.0"
+        "node-forge": "^0.10.0",
+        "passport": "^0.4.1",
+        "passport-local": "^1.0.0"
     }
 }
