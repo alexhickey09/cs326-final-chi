@@ -81,8 +81,10 @@ client.connect((err) => {
         });
     });
 
-    app.get("/viewcontact", (req, res) => {
-        console.log("viewcontact");
+    app.get("/viewcontact", async (req, res) => {
+        collection = db.collection("contact");
+        const contact = await collection.findOne();
+        res.send(contact);
     });
 
     app.get("/selectedFood", (req, res) => {
