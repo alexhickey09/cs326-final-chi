@@ -117,22 +117,22 @@ client.connect((err) => {
     });
 
     app.use('/', express.static(__dirname + '/../client'));
-​
+
     app.post('/login',
         passport.authenticate('local' , {   
             'successRedirect' : '/private',   
             'failureRedirect' : '/login'      
         }));
-​
+
     app.get('/login',
         (req, res) => res.sendFile('client/index.html',
                     { 'root' : __dirname }));
-​
+
     app.get('/logout', (req, res) => {
         req.logout();
         res.redirect('/login');
     });
-​
+
     app.post('/register',
         (req, res) => {
             const username = req.body['username'];
@@ -143,17 +143,16 @@ client.connect((err) => {
             res.redirect('/register');
             }
         });
-​
+
     app.get('/register',
         (req, res) => res.sendFile('client/signup.html',
                     { 'root' : __dirname }));
-​
+
     app.get('/private',
         checkLoggedIn,
         (req, res) => {
             res.redirect('/private/' + req.user);
         });
-​
 
     app.get('/private/:userID/',
         checkLoggedIn,
@@ -169,7 +168,7 @@ client.connect((err) => {
         });
 
     app.use(express.static('html'));
-​
+
     app.get('*', (req, res) => {
     res.send('Error');
     });
@@ -186,7 +185,7 @@ const session = {
     resave : false,
     saveUninitialized: false
 };
-​
+
 const strategy = new LocalStrategy(
     async (username, password, done) => {
 	if (!findUser(username)) {
@@ -198,22 +197,22 @@ const strategy = new LocalStrategy(
 	}
 	return done(null, username);
     });
-​
+
 app.use(expressSession(session));
 passport.use(strategy);
 app.use(passport.initialize());
 app.use(passport.session());
-​
+
 passport.serializeUser((user, done) => {
     done(null, user);
 });
 passport.deserializeUser((uid, done) => {
     done(null, uid);
 });
-​
+
 app.use(express.json())
 app.use(express.urlencoded({'extended' : true}));
-​
+
 function findUser(username) {
     if (!users[username]) {
 	return false;
@@ -231,7 +230,7 @@ function validatePassword(name, pwd) {
     }
     return true;
 }
-​
+
 function addUser(name, pwd) {
     if (findUser(name)) {
 	return false;
@@ -240,7 +239,7 @@ function addUser(name, pwd) {
     users[name] = [salt, hash];
     return true;
 }
-​
+
 function checkLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
 	next();
