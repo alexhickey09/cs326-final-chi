@@ -5,7 +5,7 @@ document.getElementById("update-contact-button").addEventListener('click', funct
 
 
     fetch('./updatecontact', {
-        method: 'POST',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },

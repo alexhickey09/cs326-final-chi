@@ -64,21 +64,21 @@ client.connect((err) => {
         });
     });
 
-    app.post("/updatecontact", (req, res) => { //May need to be app.put
+    app.put("/updatecontact", (req, res) => { //May need to be app.put
         collection = db.collection("contact");
-        const contact = {
-            name: req.body.name,
-            email: req.body.email,
-            phone: req.body.phone
-        };
-        collection.insertOne(contact, (err) => {
-            if(err) {
-                res.send("Error with updatecontact POST request");
+        collection.findOneAndUpdate(
+            {}, //Query field. Should eventually be the name of the DC we want to update
+            {
+                $set: {
+                    name: req.body.name,
+                    email: req.body.email,
+                    phone: req.body.phone
+                }
+            },
+            {
+                upsert: true //This means insert a document if none fitting the query exist
             }
-            else {
-                res.send("Information has been passed successfully");
-            }
-        });
+        );
     });
 
     app.get("/viewcontact", async (req, res) => {
