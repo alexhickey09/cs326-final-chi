@@ -79,6 +79,7 @@ client.connect((err) => {
                 upsert: true //This means insert a document if none fitting the query exist
             }
         );
+        res.send("Contact successfully updated"); //Not sure if this is necessary or is sending the right info
     });
 
     app.get("/viewcontact", async (req, res) => {
