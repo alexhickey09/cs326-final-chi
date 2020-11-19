@@ -153,11 +153,7 @@ passport.deserializeUser((uid, done) => {
     done(null, uid);
 });
 
-<<<<<<< HEAD
-app.use(express.json());
-=======
 //app.use(express.json()) MOVED THIS LINE ABOVE
->>>>>>> 17dede80619605486e45cf17017e89ec013c2f1d
 app.use(express.urlencoded({'extended' : true}));
 
 function findUser(email) {
@@ -208,10 +204,12 @@ app.post('/loginngo',
     }));
 
 app.get('/dc',
+    checkLoggedIn,
     (req, res) => res.sendFile('client/dc-home.html',
                 { 'root' : process.cwd() }));
 
 app.get('/ngo',
+    checkLoggedIn,
     (req, res) => res.sendFile('client/ngo-choosedc.js',
             { 'root' : process.cwd() }));
 
