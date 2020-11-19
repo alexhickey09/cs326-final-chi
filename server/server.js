@@ -1,4 +1,3 @@
-const join = require("path").join;
 const express = require("express");
 const { MongoClient } = require("mongodb");
 const bodyParser = require('body-parser');
@@ -20,19 +19,11 @@ if (!process.env.PASSWORD) {
 }
 
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
-
 const dbName = "DishSaver";
 
+let db, collection;
+
 const app = express();
-app.use(require("cors")());
-
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(express.json());
-
-let db;
-let collection;
 
 app.use(express.static("client"));
 
