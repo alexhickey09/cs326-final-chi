@@ -130,15 +130,15 @@ const session = {
 };
 
 const strategy = new LocalStrategy(
-    async (email, password, done) => {
-	if (!findUser(email)) {
+    async (username, password, done) => {
+	if (!findUser(username)) {
 	    return done(null, false, { 'message' : 'Wrong email' });
 	}
-	if (!validatePassword(email, password)) {
+	if (!validatePassword(username, password)) {
 	    await new Promise((r) => setTimeout(r, 2000));
 	    return done(null, false, { 'message' : 'Wrong password' });
 	}
-	return done(null, email);
+	return done(null, username);
     });
 
 app.use(expressSession(session));
@@ -153,33 +153,32 @@ passport.deserializeUser((uid, done) => {
     done(null, uid);
 });
 
-//app.use(express.json()) MOVED THIS LINE ABOVE
 app.use(express.urlencoded({'extended' : true}));
 
-function findUser(email) {
-    if (!users[email]) {
+function findUser(username) {
+    if (!users[username]) {
 	return false;
     } else {
 	return true;
     }
 }
 
-function validatePassword(email, pwd) {
-    if (!findUser(email)) {
+function validatePassword(username, pwd) {
+    if (!findUser(username)) {
 	return false;
     }
-    if (!mc.check(pwd, users[email][0], users[email][1])) {
+    if (!mc.check(pwd, users[username][0], users[username][1])) {
 	return false;
     }
     return true;
 }
 
-function addUser(email, pwd) {
-    if (findUser(email)) {
+function addUser(username, pwd) {
+    if (findUser(username)) {
 	return false;
     }
     const [salt, hash] = mc.hash(pwd);
-    users[email] = [salt, hash];
+    users[username] = [salt, hash];
     return true;
 }
 
@@ -205,12 +204,12 @@ app.post('/loginngo',
 
 app.get('/dc',
     checkLoggedIn,
-    (req, res) => res.sendFile('client/dc-home.html',
+    (req, res) => res.sendFile('/client/dc-home.html',
                 { 'root' : process.cwd() }));
 
 app.get('/ngo',
     checkLoggedIn,
-    (req, res) => res.sendFile('client/ngo-choosedc.js',
+    (req, res) => res.sendFile('client/ngo-choose-dc.html',
             { 'root' : process.cwd() }));
 
 app.get('/login',
@@ -224,9 +223,9 @@ app.get('/logout', (req, res) => {
 
 app.post('/register',
     (req, res) => {
-        const email = req.body['email'];
+        const username = req.body['username'];
         const password = req.body['password'];
-        if (addUser(email, password)) {
+        if (addUser(username, password)) {
         res.redirect('/login');
         } else {
         res.redirect('/register');
