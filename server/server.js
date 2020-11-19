@@ -154,9 +154,8 @@ passport.deserializeUser((uid, done) => {
 
 app.use(express.urlencoded({'extended' : true}));
 
-async function findUser(username) {
-    let currusers = await db.collection('users').find().sort({ name: -1 }).toArray();
-    console.log(currusers);
+function findUser(username) {
+    const currusers = db.collection('users').find().sort({ name: -1 }).toArray();
     if (!currusers[username]) {
 	return false;
     } else {
@@ -164,14 +163,15 @@ async function findUser(username) {
     }
 }
 
-async function validatePassword(username, pwd) {
-    let currusers = await db.collection('users').find().sort({ name: -1 }).toArray();
-    console.log(currusers);
+function validatePassword(username, pwd) {
+    const currusers = db.collection('users').find().sort({ name: -1 }).toArray();
     if (!findUser(username)) {
 	return false;
     }
-    if (!mc.check(pwd, currusers[username][0], currusers[username][1])) {
-	return false;
+    if(currusers.length > 0){
+        if (!mc.check(pwd, currusers[username][0], currusers[username][1])) {
+	    return false;
+        }
     }
     return true;
 }
