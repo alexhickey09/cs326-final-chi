@@ -107,55 +107,6 @@ app.post("/fulfillRequest", (req, res) => {
 
 app.use('/', express.static(__dirname + '/../client'));*/
 
-app.post('/login',
-    passport.authenticate('local' , {   
-        'successRedirect' : '/private',   
-        'failureRedirect' : '/login'      
-    }));
-
-app.get('/login',
-    (req, res) => res.sendFile('client/index.html',
-                { 'root' : __dirname }));
-
-app.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/login');
-});
-
-app.post('/register',
-    (req, res) => {
-        const username = req.body['username'];
-        const password = req.body['password'];
-        if (addUser(username, password)) {
-        res.redirect('/login');
-        } else {
-        res.redirect('/register');
-        }
-    });
-
-app.get('/register',
-    (req, res) => res.sendFile('client/signup.html',
-                { 'root' : __dirname }));
-
-app.get('/private',
-    checkLoggedIn,
-    (req, res) => {
-        res.redirect('/private/' + req.user);
-    });
-
-app.get('/private/:userID/',
-    checkLoggedIn,
-    (req, res) => {
-        if (req.params.userID === req.user) {
-        res.writeHead(200, {"Content-Type" : "text/html"});
-        res.write('<H1>HELLO ' + req.params.userID + "</H1>");
-        res.write('<br/><a href="/logout">click here to logout</a>');
-        res.end();
-        } else {
-        res.redirect('/private/');
-    }
-});
-
 client.connect(err => {
     if (err) {
         console.error(err);
@@ -166,8 +117,8 @@ client.connect(err => {
     }
 })
 
-const users = {};
 //Login/signup stuff
+const users = {};
 const mc = new minicrypt();
 
 const session = {
@@ -177,15 +128,15 @@ const session = {
 };
 
 const strategy = new LocalStrategy(
-    async (username, password, done) => {
-	if (!findUser(username)) {
-	    return done(null, false, { 'message' : 'Wrong username' });
+    async (email, password, done) => {
+	if (!findUser(email)) {
+	    return done(null, false, { 'message' : 'Wrong email' });
 	}
-	if (!validatePassword(username, password)) {
+	if (!validatePassword(email, password)) {
 	    await new Promise((r) => setTimeout(r, 2000));
 	    return done(null, false, { 'message' : 'Wrong password' });
 	}
-	return done(null, username);
+	return done(null, email);
     });
 
 app.use(expressSession(session));
@@ -200,33 +151,33 @@ passport.deserializeUser((uid, done) => {
     done(null, uid);
 });
 
-app.use(express.json())
+app.use(express.json());
 app.use(express.urlencoded({'extended' : true}));
 
-function findUser(username) {
-    if (!users[username]) {
+function findUser(email) {
+    if (!users[email]) {
 	return false;
     } else {
 	return true;
     }
 }
 
-function validatePassword(name, pwd) {
-    if (!findUser(name)) {
+function validatePassword(email, pwd) {
+    if (!findUser(email)) {
 	return false;
     }
-    if (!mc.check(pwd, users[name][0], users[name][1])) {
+    if (!mc.check(pwd, users[email][0], users[email][1])) {
 	return false;
     }
     return true;
 }
 
-function addUser(name, pwd) {
-    if (findUser(name)) {
+function addUser(email, pwd) {
+    if (findUser(email)) {
 	return false;
     }
     const [salt, hash] = mc.hash(pwd);
-    users[name] = [salt, hash];
+    users[email] = [salt, hash];
     return true;
 }
 
@@ -238,6 +189,49 @@ function checkLoggedIn(req, res, next) {
     }
 }
 
+app.post('/logindc',
+    passport.authenticate('local' , {   
+        'successRedirect' : '/dc',   
+        'failureRedirect' : '/login'      
+    }));
+
+app.post('/loginngo',
+    passport.authenticate('local' , {   
+        'successRedirect' : '/ngo',   
+        'failureRedirect' : '/login'      
+    }));
+
+app.get('/dc',
+    (req, res) => res.sendFile('client/dc-home.html',
+                { 'root' : process.cwd() }));
+
+app.get('/ngo',
+    (req, res) => res.sendFile('client/ngo-choosedc.js',
+            { 'root' : process.cwd() }));
+
+app.get('/login',
+    (req, res) => res.sendFile('client/index.html',
+                { 'root' : process.cwd() }));
+
+app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/login');
+});
+
+app.post('/register',
+    (req, res) => {
+        const email = req.body['email'];
+        const password = req.body['password'];
+        if (addUser(email, password)) {
+        res.redirect('/login');
+        } else {
+        res.redirect('/register');
+        }
+    });
+
+app.get('/register',
+    (req, res) => res.sendFile('client/signup.html',
+                { 'root' : process.cwd() }));
 
 
 //Below is all of our original server code, pre-MongoDB
