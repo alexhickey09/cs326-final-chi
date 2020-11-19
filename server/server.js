@@ -109,11 +109,11 @@ app.post("/fulfillRequest", (req, res) => {
     console.log("addfood");
 });
 
-app.get("/", (req, res) => {
+/*app.get("/", (req, res) => {
     res.sendFile(join(__dirname, "/../client/index.html"));
 });
 
-app.use('/', express.static(__dirname + '/../client'));
+app.use('/', express.static(__dirname + '/../client'));*/
 
 app.post('/login',
     passport.authenticate('local' , {   
@@ -168,7 +168,8 @@ client.connect(err => {
     if (err) {
         console.error(err);
     } else {
-        app.listen(process.env.PORT || 8080);
+        const port = process.env.PORT || 8080;
+        app.listen(port);
         db = client.db(dbName);
     }
 })
