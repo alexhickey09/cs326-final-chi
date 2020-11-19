@@ -24,10 +24,11 @@ const dbName = "DishSaver";
 let db, collection;
 
 const app = express();
+app.use(express.json());
 
 app.use(express.static("client"));
 
-app.post("/addfood", (req, res) => {
+app.post("/addfood", async (req, res) => {
     collection = db.collection("food");
     const foodItem = {
         name: req.body.name,
@@ -35,6 +36,7 @@ app.post("/addfood", (req, res) => {
         amount: req.body.amount,
         nutrition: req.body.nutrition
     };
+
     collection.insertOne(foodItem, (err) => {
         if(err) {
             res.send("Error with addfood POST request");
@@ -200,7 +202,7 @@ passport.deserializeUser((uid, done) => {
     done(null, uid);
 });
 
-app.use(express.json())
+//app.use(express.json()) MOVED THIS LINE ABOVE
 app.use(express.urlencoded({'extended' : true}));
 
 function findUser(username) {
