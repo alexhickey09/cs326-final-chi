@@ -120,7 +120,6 @@ client.connect(err => {
 })
 
 //Login/signup stuff
-const users = {};
 const mc = new minicrypt();
 
 const session = {
@@ -155,19 +154,23 @@ passport.deserializeUser((uid, done) => {
 
 app.use(express.urlencoded({'extended' : true}));
 
-function findUser(username) {
-    if (!users[username]) {
+async function findUser(username) {
+    let currusers = await db.collection('users').find().sort({ name: -1 }).toArray();
+    console.log(currusers);
+    if (!currusers[username]) {
 	return false;
     } else {
 	return true;
     }
 }
 
-function validatePassword(username, pwd) {
+async function validatePassword(username, pwd) {
+    let currusers = await db.collection('users').find().sort({ name: -1 }).toArray();
+    console.log(currusers);
     if (!findUser(username)) {
 	return false;
     }
-    if (!mc.check(pwd, users[username][0], users[username][1])) {
+    if (!mc.check(pwd, currusers[username][0], currusers[username][1])) {
 	return false;
     }
     return true;
@@ -178,7 +181,11 @@ function addUser(username, pwd) {
 	return false;
     }
     const [salt, hash] = mc.hash(pwd);
-    users[username] = [salt, hash];
+    const newuser = {
+        username: username,
+        password: [salt, hash]
+    };
+    db.collection('users').insertOne(newuser);
     return true;
 }
 
