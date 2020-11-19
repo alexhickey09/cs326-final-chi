@@ -7,18 +7,19 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const minicrypt = require('./miniCrypt');
 
-let secrets, username, password;
+let secrets, username, password, url;
 if (!process.env.PASSWORD) {
     secrets = require('../secrets.json');
     username = secrets.username;
     password = secrets.password;
+    url = `mongodb+srv://${username}:${password}@dishsaver.knahq.mongodb.net/DishSaver?retryWrites=true&w=majority`;
 } else {
     username = process.env.USERNAME;
-	password = process.env.PASSWORD;
+    password = process.env.PASSWORD;
+    url = process.env.DATABASE_URL
 }
 
-const url = `mongodb+srv://${username}:${password}@dishsaver.knahq.mongodb.net/DishSaver?retryWrites=true&w=majority`;
-const client = new MongoClient(url, { useUnifiedTopology: true });
+const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const dbName = "DishSaver";
 
