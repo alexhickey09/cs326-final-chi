@@ -176,7 +176,7 @@ async function validatePassword(username, pwd) {
     return true;
 }
 
-function addUser(username, pwd) {
+async function addUser(username, pwd) {
     if (findUser(username)) {
 	return false;
     }
@@ -185,7 +185,7 @@ function addUser(username, pwd) {
         username: username,
         password: [salt, hash]
     };
-    db.collection('users').insertOne(newuser);
+    await db.collection('users').insertOne(newuser);
     return true;
 }
 
