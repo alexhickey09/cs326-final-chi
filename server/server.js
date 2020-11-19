@@ -13,6 +13,7 @@ if (!process.env.PASSWORD) {
     username = secrets.username;
     password = secrets.password;
 } else {
+    username = process.env.USERNAME;
 	password = process.env.PASSWORD;
 }
 
