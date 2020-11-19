@@ -29,152 +29,148 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.json());
 
+let db;
+let collection;
 
-client.connect((err) => {
-    if (err) { 
-        throw err;
-    }
-    const db = client.db(dbName);
-    let collection;
+app.use(express.static("client"));
 
-
-    app.post("/addfood", (req, res) => {
-        collection = db.collection("food");
-        const foodItem = {
-            name: req.body.name,
-            category: req.body.category,
-            amount: req.body.amount,
-            nutrition: req.body.nutrition
-        };
-        collection.insertOne(foodItem, (err) => {
-            if(err) {
-                res.send("Error with addfood POST request");
-            }
-            else {
-                res.send("Information has been passed successfully");
-            }
-        });
-    });
-
-    app.get("/viewfood", (req, res) => { //Note: first parameter has to be req even though it isn't used
-        collection = db.collection("food");
-        collection.find({}).toArray((err, docs) => {
-            if(err) {
-                res.send("Error with viewfood GET request");
-            }
-            else {
-                res.send(docs);
-            }
-        });
-    });
-
-    app.put("/updatecontact", (req, res) => { //May need to be app.put
-        collection = db.collection("contact");
-        collection.findOneAndUpdate(
-            {}, //Query field. Should eventually be the name of the DC we want to update
-            {
-                $set: {
-                    name: req.body.name,
-                    email: req.body.email,
-                    phone: req.body.phone
-                }
-            },
-            {
-                upsert: true //This means insert a document if none fitting the query exist
-            }
-        );
-        res.send("Contact successfully updated"); //Not sure if this is necessary or is sending the right info
-    });
-
-    app.get("/viewcontact", async (req, res) => {
-        collection = db.collection("contact");
-        const contact = await collection.findOne();
-        res.send(contact);
-    });
-
-    app.get("/selectedFood", (req, res) => {
-        console.log("selectedFood");
-    });
-
-    app.get("/viewrequests", (req, res) => {
-        console.log("viewrequests");
-    });
-
-    app.post("/makeRequest", (req, res) => {
-        console.log("makeRequest");
-    });
-
-    app.post("/addToSelection", (req, res) => {
-        console.log("addToSelection");
-    });
-
-    app.post("/fulfillRequest", (req, res) => {
-        console.log("addfood");
-    });
-
-    app.get("/", (req, res) => {
-        res.sendFile(join(__dirname, "/../client/index.html"));
-    });
-
-    app.use('/', express.static(__dirname + '/../client'));
-
-    app.post('/login',
-        passport.authenticate('local' , {   
-            'successRedirect' : '/private',   
-            'failureRedirect' : '/login'      
-        }));
-
-    app.get('/login',
-        (req, res) => res.sendFile('client/index.html',
-                    { 'root' : __dirname }));
-
-    app.get('/logout', (req, res) => {
-        req.logout();
-        res.redirect('/login');
-    });
-
-    app.post('/register',
-        (req, res) => {
-            const username = req.body['username'];
-            const password = req.body['password'];
-            if (addUser(username, password)) {
-            res.redirect('/login');
-            } else {
-            res.redirect('/register');
-            }
-        });
-
-    app.get('/register',
-        (req, res) => res.sendFile('client/signup.html',
-                    { 'root' : __dirname }));
-
-    app.get('/private',
-        checkLoggedIn,
-        (req, res) => {
-            res.redirect('/private/' + req.user);
-        });
-
-    app.get('/private/:userID/',
-        checkLoggedIn,
-        (req, res) => {
-            if (req.params.userID === req.user) {
-            res.writeHead(200, {"Content-Type" : "text/html"});
-            res.write('<H1>HELLO ' + req.params.userID + "</H1>");
-            res.write('<br/><a href="/logout">click here to logout</a>');
-            res.end();
-            } else {
-            res.redirect('/private/');
-            }
-        });
-
-    app.use(express.static('html'));
-
-    app.get('*', (req, res) => {
-    res.send('Error');
+app.post("/addfood", (req, res) => {
+    collection = db.collection("food");
+    const foodItem = {
+        name: req.body.name,
+        category: req.body.category,
+        amount: req.body.amount,
+        nutrition: req.body.nutrition
+    };
+    collection.insertOne(foodItem, (err) => {
+        if(err) {
+            res.send("Error with addfood POST request");
+        }
+        else {
+            res.send("Information has been passed successfully");
+        }
     });
 });
 
-app.listen(process.env.PORT || 8080);
+app.get("/viewfood", (req, res) => { //Note: first parameter has to be req even though it isn't used
+    collection = db.collection("food");
+    collection.find({}).toArray((err, docs) => {
+        if(err) {
+            res.send("Error with viewfood GET request");
+        }
+        else {
+            res.send(docs);
+        }
+    });
+});
+
+app.put("/updatecontact", (req, res) => { //May need to be app.put
+    collection = db.collection("contact");
+    collection.findOneAndUpdate(
+        {}, //Query field. Should eventually be the name of the DC we want to update
+        {
+            $set: {
+                name: req.body.name,
+                email: req.body.email,
+                phone: req.body.phone
+            }
+        },
+        {
+            upsert: true //This means insert a document if none fitting the query exist
+        }
+    );
+    res.send("Contact successfully updated"); //Not sure if this is necessary or is sending the right info
+});
+
+app.get("/viewcontact", async (req, res) => {
+    collection = db.collection("contact");
+    const contact = await collection.findOne();
+    res.send(contact);
+});
+
+app.get("/selectedFood", (req, res) => {
+    console.log("selectedFood");
+});
+
+app.get("/viewrequests", (req, res) => {
+    console.log("viewrequests");
+});
+
+app.post("/makeRequest", (req, res) => {
+    console.log("makeRequest");
+});
+
+app.post("/addToSelection", (req, res) => {
+    console.log("addToSelection");
+});
+
+app.post("/fulfillRequest", (req, res) => {
+    console.log("addfood");
+});
+
+app.get("/", (req, res) => {
+    res.sendFile(join(__dirname, "/../client/index.html"));
+});
+
+app.use('/', express.static(__dirname + '/../client'));
+
+app.post('/login',
+    passport.authenticate('local' , {   
+        'successRedirect' : '/private',   
+        'failureRedirect' : '/login'      
+    }));
+
+app.get('/login',
+    (req, res) => res.sendFile('client/index.html',
+                { 'root' : __dirname }));
+
+app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/login');
+});
+
+app.post('/register',
+    (req, res) => {
+        const username = req.body['username'];
+        const password = req.body['password'];
+        if (addUser(username, password)) {
+        res.redirect('/login');
+        } else {
+        res.redirect('/register');
+        }
+    });
+
+app.get('/register',
+    (req, res) => res.sendFile('client/signup.html',
+                { 'root' : __dirname }));
+
+app.get('/private',
+    checkLoggedIn,
+    (req, res) => {
+        res.redirect('/private/' + req.user);
+    });
+
+app.get('/private/:userID/',
+    checkLoggedIn,
+    (req, res) => {
+        if (req.params.userID === req.user) {
+        res.writeHead(200, {"Content-Type" : "text/html"});
+        res.write('<H1>HELLO ' + req.params.userID + "</H1>");
+        res.write('<br/><a href="/logout">click here to logout</a>');
+        res.end();
+        } else {
+        res.redirect('/private/');
+    }
+});
+
+client.connect(err => {
+    if (err) {
+        console.error(err);
+    } else {
+        app.listen(process.env.PORT || 8080);
+        db = client.db(dbName);
+    }
+})
 
 const users = {};
 //Login/signup stuff
