@@ -50,7 +50,6 @@ app.post("/addfood", async (req, res) => {
 
 app.get("/viewfood", (req, res) => { //Note: first parameter has to be req even though it isn't used
     collection = db.collection("food");
-    console.log(req.query.dc)
     collection.find({}).toArray((err, docs) => {
         if(err) {
             res.send("Error with viewfood GET request");
@@ -232,7 +231,7 @@ function validatePassword(username, pwd) {
         return false;
     }
 
-    let users = {};
+    const users = {};
     for(let i = 0; i < currUsers.length; i++) {
         users[currUsers[i].username] = currUsers[i].password;
     }
