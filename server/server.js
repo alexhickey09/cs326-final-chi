@@ -85,19 +85,19 @@ app.put("/updatecontact", (req, res) => { //May need to be app.put
 
 app.get("/viewcontact", async (req, res) => {
     collection = db.collection("contact");
-    // const contact = await collection.findOne();
-    // res.send(contact);
-    collection.find({}).toArray((err, docs) => {
-        if(err) {
-            res.send("Error with viewfood GET request");
-        }
-        else {
-            docs = docs.filter((doc) => {
-                return doc.dc === req.query.dc;
-            });
-            res.send(docs);
-        }
-    });
+    const contact = await collection.findOne({dc: req.query.dc});
+    res.send(contact);
+    // collection.findOne().toArray((err, docs) => {
+    //     if(err) {
+    //         res.send("Error with viewfood GET request");
+    //     }
+    //     else {
+    //         docs = docs.filter((doc) => {
+    //             return doc.dc === req.query.dc;
+    //         });
+    //         res.send(docs);
+    //     }
+    // });
 });
 
 app.post("/addToSelection", (req, res) => {
