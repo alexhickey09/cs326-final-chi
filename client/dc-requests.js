@@ -61,7 +61,7 @@ window.addEventListener("load", function() {
                         headers: {
                             'Content-Type': 'application/json;charset=utf-8'
                         },
-                        body: JSON.stringify(data[i][0]), //Passes in the name of the NGO making the request
+                        body: JSON.stringify({name: data[i].name}), //Passes in the name of the NGO making the request
                     });
                 });
             }

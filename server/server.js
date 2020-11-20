@@ -151,7 +151,8 @@ app.get("/viewrequests", (req, res) => {
 });
 
 app.post("/fulfillRequest", (req, res) => {
-    console.log("fulfillRequest");
+    collection = db.collection("requests");
+    collection.deleteOne({name: req.body.name});
 });
 
 /*app.get("/", (req, res) => {
