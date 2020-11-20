@@ -33,7 +33,8 @@ app.post("/addfood", async (req, res) => {
         name: req.body.name,
         category: req.body.category,
         amount: req.body.amount,
-        nutrition: req.body.nutrition
+        nutrition: req.body.nutrition,
+        dc: req.query.dc
     };
 
     collection.insertOne(foodItem, (err) => {
@@ -48,15 +49,20 @@ app.post("/addfood", async (req, res) => {
 
 app.get("/viewfood", (req, res) => { //Note: first parameter has to be req even though it isn't used
     collection = db.collection("food");
+    console.log(req.query.dc)
     collection.find({}).toArray((err, docs) => {
         if(err) {
             res.send("Error with viewfood GET request");
         }
         else {
+            docs = docs.filter((doc) => {
+                return doc.dc === window.localStorage.getItem("dc");
+            });
             res.send(docs);
         }
     });
 });
+
 
 app.put("/updatecontact", (req, res) => { //May need to be app.put
     collection = db.collection("contact");

@@ -2,7 +2,9 @@ document.getElementById("addfoodbutton").addEventListener('click', async functio
     const foodItem = {"name": document.getElementById("name").value,
                       "category": document.getElementById("category").value,
                       "amount": document.getElementById("amount").value,
-                      "nutrition": document.getElementById("nutrition").value};
+                      "nutrition": document.getElementById("nutrition").value,
+                      "dc": window.localStorage.getItem("dc"),
+                    };
 
     fetch('./addfood', {
         method: 'POST',

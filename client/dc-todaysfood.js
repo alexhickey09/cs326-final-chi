@@ -15,7 +15,8 @@ document.getElementById("back-to-dc-home").addEventListener('click', function() 
 });
 
 window.addEventListener("load", function() {
-    fetch('./viewfood')
+    // fetch(`/viewfood?dc=${window.localStorage.getItem('dc')}`)
+    fetch('/viewfood?dc=' + window.localStorage.getItem('dc'))
         .then(response => response.json())
         .then(data => {
             if(data.length > 0) {
