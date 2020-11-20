@@ -150,16 +150,11 @@ app.get("/viewrequests", (req, res) => {
     });
 });
 
-app.post("/fulfillRequest", (req, res) => {
+app.post("/fulfillRequest", (req) => {
     collection = db.collection("requests");
     collection.deleteOne({name: req.body.name});
 });
 
-/*app.get("/", (req, res) => {
-    res.sendFile(join(__dirname, "/../client/index.html"));
-});
-
-app.use('/', express.static(__dirname + '/../client'));*/
 
 client.connect(err => {
     if (err) {
@@ -182,14 +177,14 @@ const session = {
 
 const strategy = new LocalStrategy(
     async (username, password, done) => {
-	if (!findUser(username)) {
-	    return done(null, false, { 'message' : 'Wrong email' });
-	}
-	if (!validatePassword(username, password)) {
-	    await new Promise((r) => setTimeout(r, 2000));
-	    return done(null, false, { 'message' : 'Wrong password' });
-	}
-	return done(null, username);
+        if (!findUser(username)) {
+            return done(null, false, {'message':'Wrong email'});
+        }
+        if (!validatePassword(username, password)) {
+            await new Promise((r) => setTimeout(r, 2000));
+            return done(null, false, { 'message' : 'Wrong password' });
+        }
+        return done(null, username);
     });
 
 app.use(expressSession(session));
@@ -209,20 +204,20 @@ app.use(express.urlencoded({'extended' : true}));
 async function findUser(username) {
     const currusers = await db.collection('users').find().sort({ name: -1 }).toArray();
     if (!currusers[username]) {
-	return false;
+        return false;
     } else {
-	return true;
+        return true;
     }
 }
 
 function validatePassword(username, pwd) {
     const currusers = db.collection('users').find().sort({ name: -1 }).toArray();
     if (!findUser(username)) {
-	return false;
+        return false;
     }
     if(currusers.length > 0){
         if (!mc.check(pwd, currusers[username][0], currusers[username][1])) {
-	    return false;
+            return false;
         }
     }
     return true;
@@ -230,7 +225,7 @@ function validatePassword(username, pwd) {
 
 async function addUser(username, pwd) {
     if (findUser(username)) {
-	return false;
+        return false;
     }
     const [salt, hash] = mc.hash(pwd);
     const newuser = {
@@ -243,9 +238,9 @@ async function addUser(username, pwd) {
 
 function checkLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
-	next();
+        next();
     } else {
-	res.redirect('/login');
+        res.redirect('/login');
     }
 }
 
@@ -254,28 +249,36 @@ app.post('/logindc',
         'successRedirect' : '/dc',   
         //'failureRedirect' : '/login'      
         'failureRedirect' : '/dc' 
-    }));
+    })
+);
 
 app.post('/loginngo',
     passport.authenticate('local' , {   
         'successRedirect' : '/ngo',   
         //'failureRedirect' : '/login'      
         'failureRedirect' : '/ngo' 
-    }));
+    })
+);
 
 app.get('/dc',
     checkLoggedIn,
     (req, res) => res.sendFile('/client/dc-home.html',
-                { 'root' : process.cwd() }));
+                { 'root' : process.cwd() }
+    )
+);
 
 app.get('/ngo',
     checkLoggedIn,
     (req, res) => res.sendFile('client/ngo-choose-dc.html',
-            { 'root' : process.cwd() }));
+            { 'root' : process.cwd() }
+    )
+);
 
 app.get('/login',
     (req, res) => res.sendFile('client/index.html',
-                { 'root' : process.cwd() }));
+                { 'root' : process.cwd() }
+    )
+);
 
 app.get('/logout', (req, res) => {
     req.logout();
@@ -287,15 +290,17 @@ app.post('/register',
         const username = req.body['username'];
         const password = req.body['password'];
         if (addUser(username, password)) {
-        res.redirect('/login');
+            res.redirect('/login');
         } else {
-        res.redirect('/register');
+            res.redirect('/register');
         }
     });
 
 app.get('/register',
     (req, res) => res.sendFile('client/signup.html',
-                { 'root' : process.cwd() }));
+                { 'root' : process.cwd() }
+    )
+);
 
 
 //Below is all of our original server code, pre-MongoDB
