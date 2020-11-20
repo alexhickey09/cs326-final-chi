@@ -1,7 +1,9 @@
 document.getElementById("update-contact-button").addEventListener('click', function() {
     const contact = {"name": document.getElementById("name").value,
                      "email": document.getElementById("email").value,
-                     "phone": document.getElementById("phone").value};
+                     "phone": document.getElementById("phone").value,
+                     "dc": window.localStorage.getItem("dc"),
+                    };
 
 
     fetch('./updatecontact', {

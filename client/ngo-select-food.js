@@ -68,7 +68,7 @@ window.addEventListener("load", function() {
             }
         });
 
-    fetch('./viewcontact')
+    fetch('./viewcontact' + window.localStorage.getItem('dc'))
         .then(response => response.json())
         .then(data => {
             const contactInfo = document.createElement("h2");
