@@ -1,6 +1,5 @@
 const express = require("express");
 const { MongoClient } = require("mongodb");
-const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -15,7 +14,7 @@ if (!process.env.PASSWORD) {
 } else {
     username = process.env.USERNAME;
     password = process.env.PASSWORD;
-    url = process.env.DATABASE_URL
+    url = process.env.DATABASE_URL;
 }
 
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -113,17 +112,38 @@ app.get("/selectedFood", (req, res) => {
     });
 });
 
+app.post("/makeRequest", (req, res) => {
+    collection = db.collection("requests");
+    const requestedFood = {
+        name: req.body[0],
+        time: req.body[1],
+        foods: req.body[2]
+    };
+    collection.insertOne(requestedFood, (err) => { //Adding the current request
+        if(err) {
+            res.send("Error with makeRequest POST request");
+        }
+        else {
+            res.send("Information has been passed successfully");
+        }
+    });
+    //Now, to remove all the food from the list of available food
+    const foods = requestedFood.foods;
+    for(let selectedFoods = 0; selectedFoods < foods.length; selectedFoods++) {
+        const currFood = foods[selectedFoods];
+        db.collection("food").deleteOne({name: currFood});
+    }
+
+    //Finally, to clear the selection so another selection may be made
+    db.collection("selection").drop();
+});
+
 app.get("/viewrequests", (req, res) => {
     console.log("viewrequests");
 });
 
-app.post("/makeRequest", (req, res) => {
-    console.log("makeRequest");
-});
-
-
 app.post("/fulfillRequest", (req, res) => {
-    console.log("addfood");
+    console.log("fulfillRequest");
 });
 
 /*app.get("/", (req, res) => {
@@ -140,7 +160,7 @@ client.connect(err => {
         app.listen(port);
         db = client.db(dbName);
     }
-})
+});
 
 //Login/signup stuff
 const mc = new minicrypt();
