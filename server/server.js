@@ -202,23 +202,29 @@ passport.deserializeUser((uid, done) => {
 app.use(express.urlencoded({'extended' : true}));
 
 async function findUser(username) {
-    const currusers = await db.collection('users').find().sort({ name: -1 }).toArray();
-    if (!currusers[username]) {
-        return false;
-    } else {
-        return true;
+    const currUsers = await db.collection('users').find({}).toArray();
+    for(let i = 0; i < currUsers.length; i++) {
+        if(currUsers[i].username === username) {
+            return true;
+        }
     }
+    return false;
 }
 
-function validatePassword(username, pwd) {
-    const currusers = db.collection('users').find().sort({ name: -1 }).toArray();
+async function validatePassword(username, pwd) {
     if (!findUser(username)) {
         return false;
     }
-    if(currusers.length > 0){
-        if (!mc.check(pwd, currusers[username][0], currusers[username][1])) {
-            return false;
-        }
+
+    const currUsers = await db.collection('users').find({}).toArray();
+    let users = {};
+    for(let i = 0; i < currUsers.length; i++) {
+        console.log(currUsers[i]);
+        users[currUsers[i].username] = currUsers[i].password;
+    }
+    console.log(users);
+    if (!mc.check(pwd, users[username][0], users[username][1])) {
+        return false;
     }
     return true;
 }
@@ -247,16 +253,16 @@ function checkLoggedIn(req, res, next) {
 app.post('/logindc',
     passport.authenticate('local' , {   
         'successRedirect' : '/dc',   
-        //'failureRedirect' : '/login'      
-        'failureRedirect' : '/dc' 
+        'failureRedirect' : '/login'      
+        //'failureRedirect' : '/dc' 
     })
 );
 
 app.post('/loginngo',
     passport.authenticate('local' , {   
         'successRedirect' : '/ngo',   
-        //'failureRedirect' : '/login'      
-        'failureRedirect' : '/ngo' 
+        'failureRedirect' : '/login'      
+        //'failureRedirect' : '/ngo' 
     })
 );
 
