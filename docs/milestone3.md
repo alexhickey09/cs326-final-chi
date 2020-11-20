@@ -60,4 +60,6 @@
 # Division of Labor: 
 * Alex Preston: Setup Login and Sign Up functionality, created and filled out milestone3.md, created final.md and added link.
 * Alex Hickey: Connected MongoDB and implemented all server endpoints using MongoDB. Implement register and login functionality with MongoDB. Help with adding one contact info per DC. General QOL + stylistic improvements. Add example documents for MongoDB collections in milestone3.md.
+* Alex Preston: Setup Login and Sign Up functionality, created and filled out milestone3.md, created final.md and added link, updated setup.md.
+* Alex Hickey:
 * Roshan Shetty: Setup the multi dc, multi contact, and multi request functionality for the dc and ngo sides. Made changes to milestone3.md.
