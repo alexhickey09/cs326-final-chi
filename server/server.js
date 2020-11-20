@@ -83,8 +83,34 @@ app.get("/viewcontact", async (req, res) => {
     res.send(contact);
 });
 
+app.post("/addToSelection", (req, res) => {
+    collection = db.collection("selection");
+    const selectedFood = {
+        name: req.body.name,
+        category: req.body.category,
+        amount: req.body.amount
+    };
+
+    collection.insertOne(selectedFood, (err) => {
+        if(err) {
+            res.send("Error with addToSelection POST request");
+        }
+        else {
+            res.send("Information has been passed successfully");
+        }
+    });
+});
+
 app.get("/selectedFood", (req, res) => {
-    console.log("selectedFood");
+    collection = db.collection("selection");
+    collection.find({}).toArray((err, docs) => {
+        if(err) {
+            res.send("Error with viewfood GET request");
+        }
+        else {
+            res.send(docs);
+        }
+    });
 });
 
 app.get("/viewrequests", (req, res) => {
@@ -95,9 +121,6 @@ app.post("/makeRequest", (req, res) => {
     console.log("makeRequest");
 });
 
-app.post("/addToSelection", (req, res) => {
-    console.log("addToSelection");
-});
 
 app.post("/fulfillRequest", (req, res) => {
     console.log("addfood");
@@ -154,8 +177,8 @@ passport.deserializeUser((uid, done) => {
 
 app.use(express.urlencoded({'extended' : true}));
 
-function findUser(username) {
-    const currusers = db.collection('users').find().sort({ name: -1 }).toArray();
+async function findUser(username) {
+    const currusers = await db.collection('users').find().sort({ name: -1 }).toArray();
     if (!currusers[username]) {
 	return false;
     } else {
@@ -200,13 +223,15 @@ function checkLoggedIn(req, res, next) {
 app.post('/logindc',
     passport.authenticate('local' , {   
         'successRedirect' : '/dc',   
-        'failureRedirect' : '/login'      
+        //'failureRedirect' : '/login'      
+        'failureRedirect' : '/dc' 
     }));
 
 app.post('/loginngo',
     passport.authenticate('local' , {   
         'successRedirect' : '/ngo',   
-        'failureRedirect' : '/login'      
+        //'failureRedirect' : '/login'      
+        'failureRedirect' : '/ngo' 
     }));
 
 app.get('/dc',
