@@ -139,7 +139,15 @@ app.post("/makeRequest", (req, res) => {
 });
 
 app.get("/viewrequests", (req, res) => {
-    console.log("viewrequests");
+    collection = db.collection("requests");
+    collection.find({}).toArray((err, docs) => {
+        if(err) {
+            res.send("Error with viewrequests GET request");
+        }
+        else {
+            res.send(docs);
+        }
+    });
 });
 
 app.post("/fulfillRequest", (req, res) => {

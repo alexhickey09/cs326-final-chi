@@ -38,15 +38,15 @@ window.addEventListener("load", function() {
                 const row = table.insertRow();
 
                 const name = row.insertCell();
-                const nameText = document.createTextNode(data[i][0]);
+                const nameText = document.createTextNode(data[i].name);
                 name.appendChild(nameText);
 
-                const category = row.insertCell();
-                const categoryText = document.createTextNode(data[i][1]);
-                category.appendChild(categoryText);
+                const time = row.insertCell();
+                const timeText = document.createTextNode(data[i].time);
+                time.appendChild(timeText);
 
                 const amount = row.insertCell();
-                const foods = data[i][2];
+                const foods = data[i].foods;
                 const foodsString = foods.join(", ");
                 const amountText = document.createTextNode(foodsString);
                 amount.appendChild(amountText);
@@ -55,7 +55,7 @@ window.addEventListener("load", function() {
                 select.type = "button";
                 select.className = "btn btn-secondary";
                 select.innerHTML = "Fullfil";
-                select.onclick = (function selectFood() {//this needs to be fixed...
+                select.onclick = (function selectFood() {
                     fetch('./fulfillRequest', {
                         method: 'POST',
                         headers: {
