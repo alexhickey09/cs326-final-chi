@@ -35,7 +35,7 @@ app.post("/addfood", async (req, res) => {
         category: req.body.category,
         amount: req.body.amount,
         nutrition: req.body.nutrition,
-        dc: req.query.dc
+        dc: req.body.dc
     };
 
     collection.insertOne(foodItem, (err) => {
