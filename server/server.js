@@ -67,7 +67,7 @@ app.get("/viewfood", (req, res) => { //Note: first parameter has to be req even 
 app.put("/updatecontact", (req, res) => { //May need to be app.put
     collection = db.collection("contact");
     collection.findOneAndUpdate(
-        {}, //Query field. Should eventually be the name of the DC we want to update
+        {dc: req.body.dc}, //Query field. Should eventually be the name of the DC we want to update
         {
             $set: {
                 name: req.body.name,
@@ -85,19 +85,8 @@ app.put("/updatecontact", (req, res) => { //May need to be app.put
 
 app.get("/viewcontact", async (req, res) => {
     collection = db.collection("contact");
-    const contact = await collection.findOne({dc: req.query.dc});
+    const contact = await collection.findOne({"dc": req.query.dc});
     res.send(contact);
-    // collection.findOne().toArray((err, docs) => {
-    //     if(err) {
-    //         res.send("Error with viewfood GET request");
-    //     }
-    //     else {
-    //         docs = docs.filter((doc) => {
-    //             return doc.dc === req.query.dc;
-    //         });
-    //         res.send(docs);
-    //     }
-    // });
 });
 
 app.post("/addToSelection", (req, res) => {
