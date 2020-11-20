@@ -49,7 +49,7 @@ document.getElementById("back-to-food-select").addEventListener('click', functio
 
 
 document.getElementById("submitreq").addEventListener('click', async function() {
-    let arr = [];
+    const arr = [];
     await fetch('./selectedFood')
         .then(response => response.json())
         .then(data => {
