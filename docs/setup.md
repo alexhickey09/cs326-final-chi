@@ -7,4 +7,4 @@
     * Create necessary collections in database.
     * Update endpoints to work with database.
     * Add in registration and sign in functionality.
-    * Have choice of dc only show food for that dc.
+    * Have choice of dc only show necessary information for that dc (i.e selecting Franklin DC only shows food available at Franklin, and not from other DC's).
