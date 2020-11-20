@@ -15,7 +15,6 @@ document.getElementById("back-to-dc-home").addEventListener('click', function() 
 });
 
 window.addEventListener("load", function() {
-    // fetch(`/viewfood?dc=${window.localStorage.getItem('dc')}`)
     fetch('/viewfood?dc=' + window.localStorage.getItem('dc'))
         .then(response => response.json())
         .then(data => {
@@ -60,7 +59,7 @@ window.addEventListener("load", function() {
                 }
             }
             else {
-                document.getElementById("todays-food-table").innerHTML = "No food has been listed yet.";
+                document.getElementById("no-food").innerHTML = "No food has been listed yet.";
             }
         });
 });
