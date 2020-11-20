@@ -1,6 +1,6 @@
 Database:
 * We used a mongodb cluster.
-* The database has 4 collections: contact, food, requests, and users.
+* The database has 5 collections: contact, food, requests, selection, and users.
 * Contact:
     * Stores the contact information for the Dining Commons.
     * Format: Name, Email, Phone
@@ -10,11 +10,14 @@ Database:
 * Requests:
     * Stores the info about the ngo and pickup as well as the food being taken.
     * Format: Name, Time, Food Array, DC
+* Selection:
+    * Stores the food currently selected by an ngo.
+    * Format: Name, Category, Amount
 * Users:
     * Stores the email and password of registered users.
     * Format: Email, Password Array
 
 Division of Labor:
-* Alex Preston: Setup Login and Sign Up functionality, created and filled out milestone3.md, created final.md and added link.
+* Alex Preston: Setup Login and Sign Up functionality, created and filled out milestone3.md, created final.md and added link, updated setup.md.
 * Alex Hickey:
 * Roshan Shetty:
