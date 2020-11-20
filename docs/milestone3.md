@@ -17,6 +17,6 @@
     * Format: Email, Password Array
 
 # Division of Labor: 
-* Alex Preston: Setup Login and Sign Up functionality, created and filled out milestone3.md, created final.md and added link.
+* Alex Preston: Setup Login and Sign Up functionality, created and filled out milestone3.md, created final.md and added link, updated setup.md.
 * Alex Hickey:
 * Roshan Shetty: Setup the multi dc, multi contact, and multi request functionality for the dc and ngo sides. Made changes to milestone3.md.
