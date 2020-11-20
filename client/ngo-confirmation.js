@@ -58,7 +58,7 @@ document.getElementById("submitreq").addEventListener('click', async function() 
             }
         });
     
-    const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, arr];
+    const request = [document.getElementById("ngo-name").value, document.getElementById("pickuptime").value, arr, window.localStorage.getItem('dc')];
 
     fetch('./makeRequest', {
         method: 'POST',

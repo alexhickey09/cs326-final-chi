@@ -29,7 +29,7 @@ window.addEventListener("load", function() {
     header.appendChild(selectHead);
    
     //Making an additional row for each food item that has been listed
-    fetch('./viewfood')
+    fetch('/viewfood?dc=' + window.localStorage.getItem('dc'))
         .then(response => response.json())
         .then(data => {
             for(let i = 0; i < data.length; i++) {

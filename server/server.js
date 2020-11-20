@@ -124,7 +124,8 @@ app.post("/makeRequest", (req, res) => {
     const requestedFood = {
         name: req.body[0],
         time: req.body[1],
-        foods: req.body[2]
+        foods: req.body[2],
+        dc: req.body[3]
     };
     collection.insertOne(requestedFood, (err) => { //Adding the current request
         if(err) {
@@ -152,6 +153,9 @@ app.get("/viewrequests", (req, res) => {
             res.send("Error with viewrequests GET request");
         }
         else {
+            docs = docs.filter((doc) => {
+                return doc.dc === req.query.dc;
+            });
             res.send(docs);
         }
     });

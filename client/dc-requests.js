@@ -31,7 +31,7 @@ window.addEventListener("load", function() {
     selectHead.appendChild(selectHeadText);
     header.appendChild(selectHead);
     
-    fetch('./viewrequests')
+    fetch('/viewrequests?dc=' + window.localStorage.getItem('dc'))
         .then(response => response.json())
         .then(data => {
             for(let i = 0; i < data.length; i++) {
