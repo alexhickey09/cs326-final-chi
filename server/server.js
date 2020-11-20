@@ -6,6 +6,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const minicrypt = require('./miniCrypt');
 
 let secrets, username, password, url;
+let currUsers;
 if (!process.env.PASSWORD) {
     secrets = require('../secrets.json');
     username = secrets.username;
@@ -169,8 +170,13 @@ client.connect(err => {
         const port = process.env.PORT || 8080;
         app.listen(port);
         db = client.db(dbName);
+        getUsers();
     }
 });
+
+async function getUsers() { //Getting a local copy of the users
+    currUsers = await db.collection('users').find({}).toArray();
+}
 
 //Login/signup stuff
 const mc = new minicrypt();
@@ -207,8 +213,7 @@ passport.deserializeUser((uid, done) => {
 
 app.use(express.urlencoded({'extended' : true}));
 
-async function findUser(username) {
-    const currUsers = await db.collection('users').find({}).toArray();
+function findUser(username) {
     for(let i = 0; i < currUsers.length; i++) {
         if(currUsers[i].username === username) {
             return true;
@@ -217,25 +222,23 @@ async function findUser(username) {
     return false;
 }
 
-async function validatePassword(username, pwd) {
+function validatePassword(username, pwd) {
+
     if (!findUser(username)) {
         return false;
     }
 
-    const currUsers = await db.collection('users').find({}).toArray();
     let users = {};
     for(let i = 0; i < currUsers.length; i++) {
-        console.log(currUsers[i]);
         users[currUsers[i].username] = currUsers[i].password;
     }
-    console.log(users);
     if (!mc.check(pwd, users[username][0], users[username][1])) {
         return false;
     }
     return true;
 }
 
-async function addUser(username, pwd) {
+function addUser(username, pwd) {
     if (findUser(username)) {
         return false;
     }
@@ -244,7 +247,8 @@ async function addUser(username, pwd) {
         username: username,
         password: [salt, hash]
     };
-    await db.collection('users').insertOne(newuser);
+    db.collection('users').insertOne(newuser);
+    currUsers.push(newuser);
     return true;
 }
 
@@ -259,37 +263,38 @@ function checkLoggedIn(req, res, next) {
 app.post('/logindc',
     passport.authenticate('local' , {   
         'successRedirect' : '/dc',   
-        'failureRedirect' : '/login'      
-        //'failureRedirect' : '/dc' 
+        'failureRedirect' : '/login'
     })
 );
 
 app.post('/loginngo',
     passport.authenticate('local' , {   
         'successRedirect' : '/ngo',   
-        'failureRedirect' : '/login'      
-        //'failureRedirect' : '/ngo' 
+        'failureRedirect' : '/login'
     })
 );
 
 app.get('/dc',
     checkLoggedIn,
-    (req, res) => res.sendFile('/client/dc-home.html',
-                { 'root' : process.cwd() }
-    )
+    (req, res) => {
+        const path = __dirname + "/../client";
+        res.sendFile("dc-home.html", {root: path});
+    }
 );
 
 app.get('/ngo',
     checkLoggedIn,
-    (req, res) => res.sendFile('client/ngo-choose-dc.html',
-            { 'root' : process.cwd() }
-    )
+    (req, res) => {
+        const path = __dirname + "/../client";
+        res.sendFile("ngo-choose-dc.html", {root: path});
+    }
 );
 
 app.get('/login',
-    (req, res) => res.sendFile('client/index.html',
-                { 'root' : process.cwd() }
-    )
+    (req, res) => {
+        const path = __dirname + "/../client";
+        res.sendFile("index.html", {root: path});
+    }
 );
 
 app.get('/logout', (req, res) => {
@@ -309,9 +314,10 @@ app.post('/register',
     });
 
 app.get('/register',
-    (req, res) => res.sendFile('client/signup.html',
-                { 'root' : process.cwd() }
-    )
+    (req, res) => {
+        const path = __dirname + "/../client";
+        res.sendFile("signup.html", {root: path});
+    }
 );
 
 
