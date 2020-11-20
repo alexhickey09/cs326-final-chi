@@ -57,7 +57,7 @@ app.get("/viewfood", (req, res) => { //Note: first parameter has to be req even 
         }
         else {
             docs = docs.filter((doc) => {
-                return doc.dc === window.localStorage.getItem("dc");
+                return doc.dc === req.body.dc;
             });
             res.send(docs);
         }
