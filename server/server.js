@@ -168,7 +168,7 @@ client.connect(err => {
     }
 });
 
-async function getUsers() {
+async function getUsers() { //Getting a local copy of the users
     currUsers = await db.collection('users').find({}).toArray();
 }
 
@@ -207,31 +207,21 @@ passport.deserializeUser((uid, done) => {
 
 app.use(express.urlencoded({'extended' : true}));
 
-//const currUsers = db.collection('users').find({}).toArray();
-
-function findUser(username) { //Next try importing in users at the very start locally so its store like soln and no awaits necessary
-    console.log("here1");
-    //const currUsers = await db.collection('users').find({}).toArray();
-    //console.log(currUsers);
-    console.log("passed await");
+function findUser(username) {
     for(let i = 0; i < currUsers.length; i++) {
         if(currUsers[i].username === username) {
-            console.log("return true");
             return true;
         }
     }
-    console.log("return false");
     return false;
 }
 
 function validatePassword(username, pwd) {
 
     if (!findUser(username)) {
-        console.log("Returning false");
         return false;
     }
 
-    //const currUsers = await db.collection('users').find({}).toArray();
     let users = {};
     for(let i = 0; i < currUsers.length; i++) {
         users[currUsers[i].username] = currUsers[i].password;
@@ -243,7 +233,6 @@ function validatePassword(username, pwd) {
 }
 
 function addUser(username, pwd) {
-    console.log("here3");
     if (findUser(username)) {
         return false;
     }
@@ -253,12 +242,11 @@ function addUser(username, pwd) {
         password: [salt, hash]
     };
     db.collection('users').insertOne(newuser);
-    currUsers[username] = password;
+    currUsers.push(newuser);
     return true;
 }
 
 function checkLoggedIn(req, res, next) {
-    console.log("here4");
     if (req.isAuthenticated()) {
         next();
     } else {
@@ -269,16 +257,14 @@ function checkLoggedIn(req, res, next) {
 app.post('/logindc',
     passport.authenticate('local' , {   
         'successRedirect' : '/dc',   
-        'failureRedirect' : '/login'      
-        //'failureRedirect' : '/dc' 
+        'failureRedirect' : '/login'
     })
 );
 
 app.post('/loginngo',
     passport.authenticate('local' , {   
         'successRedirect' : '/ngo',   
-        'failureRedirect' : '/login'      
-        //'failureRedirect' : '/ngo' 
+        'failureRedirect' : '/login'
     })
 );
 
@@ -286,7 +272,6 @@ app.get('/dc',
     checkLoggedIn,
     (req, res) => {
         const path = __dirname + "/../client";
-        console.log("DC thing");
         res.sendFile("dc-home.html", {root: path});
     }
 );
@@ -301,7 +286,6 @@ app.get('/ngo',
 
 app.get('/login',
     (req, res) => {
-        console.log("Here login");
         const path = __dirname + "/../client";
         res.sendFile("index.html", {root: path});
     }
