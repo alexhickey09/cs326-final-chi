@@ -68,6 +68,67 @@ Allows DC's to view all current requests that have been made. Once an NGO has pi
 
 
 ## Database:
+* We used a MongoDB cluster and created a database which has 5 collections: `contact`, `food`, `selection`, `requests`, and `users`.
+* Below is a brief description of each collection, including what an entry within each collection consists of and the relationships between collections/entries, including an example/prototype entry.
+  
+### Contact:
+    * Stores the contact information for the Dining Commons.
+    * Format: Name, Email, Phone.
+    * Example:
+      contact document { 
+          _id: <Object ID>
+          name: String, //Name of contact
+          email: String, //Email of contact
+          phone: String, //Phone number of contact
+          dc: String //DC at which contact works
+      }
+    * Relationships: None.
+### Food:
+    * Stores information about each food item available.
+    * Format: Name, Category, Amount, Nutrition, DC.
+    * Example:
+      food document { 
+          _id: <Object ID>
+          name: String, //Name of food
+          category: String, //Category of food (breakfast, dinner, ...)
+          amount: String, //Quantity of food available
+          nutrition: String, //Nutritional information for food
+          dc: String //DC at which food is available
+      }
+    * Relationships: Food items are converted into a selection entry once an NGO selects them.
+### Selection:
+    * Stores the user's current selection (similar to a checkout cart).
+    * Format: Array of food items containing Name, Category, Amount.
+    * Example:
+      selection document { 
+          _id: <Object ID>
+          name: String, //Name of food item
+          category: String, //Category of food (breakfast, dinner, ...)
+          amount: String, //Quantity of food available
+      }
+    * Relationships: Selection takes entries from food once an NGO selects an item. A selection is converted to a request, along with the NGO's name and pickup time, once an NGO confirms their selection.
+### Requests:
+    * Stores the info about the ngo and pickup as well as the food being taken.
+    * Format: Name, Time, Food Array, DC
+    * Example:
+      contact document { 
+          _id: <Object ID>
+          name: String, //Name of the NGO making the request
+          time: String, //Time the NGO will pickup their food
+          foods: Array, //Array containing the names of all the food the NGO has selected
+          dc: String //DC for which the NGO is making a request
+      }
+    * Relationships: Requests are formed from a selection, along with the NGO's name and pickup time, once an NGO confirms their selection.
+### Users:
+    * Stores the email and password of registered users.
+    * Format: Email, Password Array
+    * Example:
+      contact document { 
+          _id: <Object ID>
+          username: String, //Email of the registered user
+          password: Array //Containing the encrypted salt and hash of the password
+      }
+    * Relationships: None.
 
 ## URL Routes/Mappings
 
