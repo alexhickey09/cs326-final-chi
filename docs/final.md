@@ -12,7 +12,7 @@ DishSaver allows UMass Dining Commons to easily and effectively communicate with
 * Alex Preston, GitHub: alexp367
 * Roshan Shetty, GitHub: RoshanPShetty
 
-## User Interface:
+## User Interfaces:
 ### Sign in/Register
 ![image](final-pictures/signin.PNG)
 
@@ -54,6 +54,18 @@ Allows NGO's view all of the items they have selected and prompts them to enter 
 Allows DC's to view all current requests that have been made. Once an NGO has picked up their requested food, the DC may click the fulfill button to remove the request from the table. 
 
 ## APIs
+* `/login` allows users to login   
+* `/register` allows new users to signup
+* `/addfood` posts a new food for the given DC, including, the following information for the food: name, category, amount, nutritional information
+* `/viewfood` shows all available food for the selected DC
+* `/updatecontact` updates the contact info for the selected DC
+* `/viewcontact` views the contact info for the selected DC
+* `/addToSelection` adds the selected food to the list of food for the current request, or the "cart"
+* `/selectedFood` gives all of the food in the current selection, or "cart"
+* `/makeRequest` confirms the current selection and makes it a request. This takes the NGO's: name, time of pickup, food items chosen. This also removes all of the chosen food from the DC's list of available food to prevent multiple NGO's from selecting the same food.
+* `/fulfillRequest` completes/removes the selected request
+* `/viewrequests` shows all current requests at the selected DC
+
 
 ## Database:
 
