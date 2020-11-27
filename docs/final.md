@@ -18,6 +18,16 @@ DishSaver allows UMass Dining Commons to easily and effectively communicate with
 
 Allows existing users to sign in to the application or new users to register an account (the signin UI is pictured above but the register UI looks very similar).
 
+### DC Home Page
+![image](final-pictures/dcHome.PNG)
+
+The DC Home Page UI allows DC employees to select which DC they work at.
+
+### NGO Home Page
+![image](final-pictures/ngoChooseDC.PNG)
+
+The NGO Home Page UI allows NGO's to select which DC they would like to view.
+
 ### Add Food
 ![image](final-pictures/addFood.PNG)
 
