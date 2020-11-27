@@ -13,6 +13,11 @@ DishSaver allows UMass Dining Commons to easily and effectively communicate with
 * Roshan Shetty, GitHub: RoshanPShetty
 
 ## User Interface:
+### Sign in/Register
+![image](final-pictures/signin.PNG)
+
+Allows existing users to sign in to the application or new users to register an account (the signin UI is pictured above but the register UI looks very similar).
+
 ### Add Food
 ![image](final-pictures/addFood.PNG)
 
