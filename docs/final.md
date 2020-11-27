@@ -69,7 +69,7 @@ Allows DC's to view all current requests that have been made. Once an NGO has pi
 
 ## Database:
 * We used a MongoDB cluster and created a database which has 5 collections: `contact`, `food`, `selection`, `requests`, and `users`.
-* Below is a brief description of each collection, including what an entry within each collection consists of and the relationships between collections/entries, including an example/prototype entry.
+* Below is a brief description of each collection, including what an entry within each collection consists of and the relationships between collections/entries. Also included an example/prototype entry for each collection.
   
 ### Contact:
     * Stores the contact information for the Dining Commons.
