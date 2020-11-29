@@ -131,6 +131,45 @@ Allows DC's to view all current requests that have been made. Once an NGO has pi
     * Relationships: None.
 
 ## URL Routes/Mappings:
+Using the wireframe from milestone 1, we can see that there URL routes are straightforward:
+
+![example image](Wireframe.jpg)
+
+The application opens with `index.html`. You may choose to sign in if you have an account or else you have you have to sign up. The routes for signin up are:
+
+`signup.html` -> `index.html`
+
+Since we have 2 sides (NGO, DC), splitting the sides and showing the routes would be the best option to do so:
+
+#### NGO:
+
+Now you choose to the sign in as the NGO. The routes are as follows:
+
+`index.html` -> `ngo-choose-dc.html` -> `ngo-select-food.html` -> `ngo-confirmation.html` -> `dc.requests.html`
+
+The routes imply that first you choose the dc, then you select the food that you would like to take and confirm the details and sending your request. The naming of the html files convey the roles of html file.
+
+#### DC:
+
+Now you choose to the sign in as the NGO. There are several routes:
+
+`index.html` -> `dc-home.html`
+
+After logging in, you choose which dc you currently work at.
+
+##### Route 1 (Adding foods):
+In this route, you as the DC add the food that you want the NGOs to take:
+`dc-todaysfood.html` -> `dc-add.html` -> `dc-todaysfood.html` ->
+
+##### Route 2 (Viewing and Fullfilling requests):
+In this route, you as the DC view the requests that you get from an NGO and fullfiling the requests:
+`dc-todaysfood.html` -> `dc-requests.html` -> `dc-todaysfood.html`
+
+
+##### Route 3 (Updating Contact):
+In this route, you as the DC view the requests that you get from an   that you want the NGOs to take:
+`dc-todaysfood.html` -> `dc-update.html` -> `dc-todaysfood.html`
+
 
 
 ## Authentication/Authorization:
