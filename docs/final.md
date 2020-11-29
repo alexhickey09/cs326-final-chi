@@ -131,62 +131,58 @@ Allows DC's to view all current requests that have been made. Once an NGO has pi
     * Relationships: None.
 
 ## URL Routes/Mappings:
-Using the wireframe from milestone 1, we can see that there URL routes are straightforward:
+Using the wireframe from milestone 1, we can see a general outline for the URL routes:
 
 ![example image](Wireframe.jpg)
 
-The application opens with `index.html`. You may choose to sign in if you have an account or else you have you have to sign up. The routes for signin up are:
+The application opens with `index.html`, which is the signin page. You may choose to sign in if you already have an account or register an account if you do not already have one. The routes for sign up are:
 
-`signup.html` -> `index.html`
+`index.html` -> `signup.html` -> `index.html`
 
-Since we have 2 sides (NGO, DC), splitting the sides and showing the routes would be the best option to do so:
+From the signin page, there are two main routes a user may take: NGO and DC:
 
 #### NGO:
 
-Now you choose to the sign in as the NGO. The routes are as follows:
+If you choose to sign in as an NGO, the routes are as follows:
 
-`index.html` -> `ngo-choose-dc.html` -> `ngo-select-food.html` -> `ngo-confirmation.html` -> `dc.requests.html`
+`index.html` -> `ngo-choose-dc.html` -> `ngo-select-food.html` -> `ngo-confirmation.html`
 
-The routes imply that first you choose the dc, then you select the food that you would like to take and confirm the details and sending your request. The naming of the html files convey the roles of html file.
+The routes imply that after signing in, you first choose the dc you would like to view, then you select the food that you would like to take, and then you confirm the details and confirm your request. The naming of the html files describes their purpose.
 
 #### DC:
 
-Now you choose to the sign in as the NGO. There are several routes:
+If you choose to sign in as a DC, the routes are as follows:
 
 `index.html` -> `dc-home.html`
 
-After logging in, you choose which dc you currently work at.
+After logging in, you choose which DC you currently work at. From the DC Home screen, users may take the following routes, in any order and as many or as few times as they wish:
 
-##### Route 1 (Adding foods):
-In this route, you as the DC add the food that you want the NGOs to take:
-`dc-todaysfood.html` -> `dc-add.html` -> `dc-todaysfood.html` ->
+##### Route 1: Adding foods
+In this route, the DC user adds the food that they have available for the NGO's to take:
+`dc-todaysfood.html` -> `dc-add.html` -> `dc-todaysfood.html`
 
-##### Route 2 (Viewing and Fullfilling requests):
-In this route, you as the DC view the requests that you get from an NGO and fullfiling the requests:
+##### Route 2: Viewing and Fullfilling requests
+In this route, the DC user may view all requests that have been made from NGO's and may remove/clear requests once they have been completed:
 `dc-todaysfood.html` -> `dc-requests.html` -> `dc-todaysfood.html`
 
-
-##### Route 3 (Updating Contact):
-In this route, you as the DC view the requests that you get from an   that you want the NGOs to take:
+##### Route 3: Updating Contact
+In this route, the DC user view and update their contact info so NGO's can reach them:
 `dc-todaysfood.html` -> `dc-update.html` -> `dc-todaysfood.html`
 
 
-
 ## Authentication/Authorization:
-    * Users register with their email and password.
-    * Users choose whether they are from a DC or NGO when logging in or registering. Based on that choice they will be directed to the home page for either NGO or DC and be able to access everything on that end.
+Users register an account with their email and password.
+Users choose whether they are from a DC or NGO when logging in or registering. Based on that choice they will be directed to the home page for either DC's or NGO's and be able to access all subsequent pages based on which side they logged in to. DC users will be able to see all pages that start with 'DC' and NGO users will be able to see all pages that start with 'NGO'.
+User passwords are encryptes using MiniCrypt that was given in class.
+
 ## Division of Labor:
-    Alex Hickey: Wrote milestone1.md, made a draft of the wireframe, created the following html pages: ngo-choose-dc, ngo-confirmation, ngo-select-food. Did general cleanup/beautification on many other pages. Added html file pictures and made GitHub release, Setup Heroku deployment. Setup page navigating/rerouting. Wrote the back-end server endpoints as well as front-end implementation for the following API endpoints: addfood, updatecontact, viewfood, viewcontact, addToSelection, makeRequest, viewrequests, fulfillRequest, Connected MongoDB and implemented all server endpoints using MongoDB. Implement register and login functionality with MongoDB. Help with adding one contact info per DC. General QOL + stylistic improvements. Add example documents for MongoDB collections in milestone3.md, worked on final.md.
+Alex Hickey: Wrote milestone1.md, made a draft of the wireframe, created the following html pages: ngo-choose-dc, ngo-confirmation, ngo-select-food. Did general cleanup/beautification on many other pages. Added html file pictures and made GitHub release, Setup Heroku deployment. Setup page navigating/rerouting. Wrote the back-end server endpoints as well as front-end implementation for the following API endpoints: addfood, updatecontact, viewfood, viewcontact, addToSelection, makeRequest, viewrequests, fulfillRequest, Connected MongoDB and implemented all server endpoints using MongoDB. Implement register and login functionality with MongoDB. Help with adding one contact info per DC. General QOL + stylistic improvements. Add example documents for MongoDB collections in milestone3.md, worked on final.md.
 
-    Alex Preston: Made edits to interactions between users and data, made a draft of the wireframe as well as the final, created all dc.html pages, looked over all pages and made minor changes, Made milestone2 doc and added endpoints and screenshots to it. Added skeleton of endpoints to server.js, implemented some endpoints, helped with various js making use of endpoints for functionality, Setup Login and Sign Up functionality, created and filled out milestone3.md, created final.md and added link, updated setup.md, worked on final.md. 
+Alex Preston: Made edits to interactions between users and data, made a draft of the wireframe as well as the final, created all dc.html pages, looked over all pages and made minor changes, Made milestone2 doc and added endpoints and screenshots to it. Added skeleton of endpoints to server.js, implemented some endpoints, helped with various js making use of endpoints for functionality, Setup Login and Sign Up functionality, created and filled out milestone3.md, created final.md and added link, updated setup.md, worked on final.md. 
 
-    Roshan Shetty: Made a draft of the wireframe, initially made all html files, created signin, signup, ngo-food-list html files, helped with various js making use of endpoints for functionality, made certain changes to the html files, setup.md, and milestone2.md, setup the multi dc, multi contact, and multi request functionality for the dc and ngo sides. Made changes to milestone3.md, worked on final.md.
+Roshan Shetty: Made a draft of the wireframe, initially made all html files, created signin, signup, ngo-food-list html files, helped with various js making use of endpoints for functionality, made certain changes to the html files, setup.md, and milestone2.md, setup the multi dc, multi contact, and multi request functionality for the dc and ngo sides. Made changes to milestone3.md, worked on final.md.
 
 ## Conclusion:
-The goal of the application was to provide simple communication between UMass Dining Commons (DC's) and nonprofit organizations (NGO's) to allow \
-the NGO's to pick up leftover food from the DC's so the food goes to those in need, rather than getting wasted. This was achieved by having each DC may list \
-the food they have leftover at the end of each day/meal (including quantities, nutrional & allergen information, etc.) and NGO's \
-may specify which food they are interested in picking up from which DC and when they will pick the food up. Once they select the \
-food, it is no longer displayed to the other NGOs, preventing double booking. Our application will have a static map that displays \
-DC locations on campus, and NGO's can click on any DC to see the food they have. \
-With our project finished, we can say that we have successfully built our application that achieve this goal. 
+The goal of the application was to provide simple communication between UMass Dining Commons (DC's) and nonprofit organizations (NGO's) to allow the NGO's to pick up leftover food from the DC's so the food goes to those in need, rather than being wasted. This was achieved by allowing each DC to list the food they have leftover at the end of each day/meal (including quantities, nutrional & allergen information, etc.) and NGO's specifying which food they are interested in picking up from which DC and when they will pick the food up. \
+Once an NGO selects a food item, it is no longer displayed to the other NGO's in order to prevent double booking. 
+With our project finished, we can say that we have successfully built our application that achieves this goal. 
