@@ -139,17 +139,9 @@ The application opens with `index.html`, which is the signin page. You may choos
 
 `index.html` -> `signup.html` -> `index.html`
 
-From the signin page, there are two main routes a user may take: NGO and DC:
+From the signin page, there are two main routes a user may take: DC and NGO:
 
-#### NGO:
-
-If you choose to sign in as an NGO, the routes are as follows:
-
-`index.html` -> `ngo-choose-dc.html` -> `ngo-select-food.html` -> `ngo-confirmation.html`
-
-The routes imply that after signing in, you first choose the dc you would like to view, then you select the food that you would like to take, and then you confirm the details and confirm your request. The naming of the html files describes their purpose.
-
-#### DC:
+#### Main Route 1: DC
 
 If you choose to sign in as a DC, the routes are as follows:
 
@@ -157,23 +149,31 @@ If you choose to sign in as a DC, the routes are as follows:
 
 After logging in, you choose which DC you currently work at. From the DC Home screen, users may take the following routes, in any order and as many or as few times as they wish:
 
-##### Route 1: Adding foods
+##### Subroute 1: Add Foods
 In this route, the DC user adds the food that they have available for the NGO's to take:
 `dc-todaysfood.html` -> `dc-add.html` -> `dc-todaysfood.html`
 
-##### Route 2: Viewing and Fullfilling requests
+##### Subroute 2: View and Fullfill Requests
 In this route, the DC user may view all requests that have been made from NGO's and may remove/clear requests once they have been completed:
 `dc-todaysfood.html` -> `dc-requests.html` -> `dc-todaysfood.html`
 
-##### Route 3: Updating Contact
-In this route, the DC user view and update their contact info so NGO's can reach them:
+##### Subroute 3: Update Contact
+In this route, the DC user may view and update their contact info so NGO's can reach them:
 `dc-todaysfood.html` -> `dc-update.html` -> `dc-todaysfood.html`
+
+#### Main Route 2: NGO
+
+If you choose to sign in as an NGO, the routes are as follows:
+
+`index.html` -> `ngo-choose-dc.html` -> `ngo-select-food.html` -> `ngo-confirmation.html`
+
+After signing in, you first choose the DC you would like to view, then you select the food items that you would like to take, and then you enter the necessary information and confirm your request. The naming of the html files describes their purpose.
 
 
 ## Authentication/Authorization:
-Users register an account with their email and password.
-Users choose whether they are from a DC or NGO when logging in or registering. Based on that choice they will be directed to the home page for either DC's or NGO's and be able to access all subsequent pages based on which side they logged in to. DC users will be able to see all pages that start with 'DC' and NGO users will be able to see all pages that start with 'NGO'.
-User passwords are encryptes using MiniCrypt that was given in class.
+Users register an account with their email and password. \
+Users choose whether they are from a DC or NGO when logging in or registering. Based on that choice they will be directed to the home page for either DC's or NGO's and be able to access all subsequent pages based on which side they logged in to. DC users will be able to see all pages that start with 'DC' and NGO users will be able to see all pages that start with 'NGO'. \
+User passwords are encrypted using MiniCrypt that was given in class.
 
 ## Division of Labor:
 Alex Hickey: Wrote milestone1.md, made a draft of the wireframe, created the following html pages: ngo-choose-dc, ngo-confirmation, ngo-select-food. Did general cleanup/beautification on many other pages. Added html file pictures and made GitHub release, Setup Heroku deployment. Setup page navigating/rerouting. Wrote the back-end server endpoints as well as front-end implementation for the following API endpoints: addfood, updatecontact, viewfood, viewcontact, addToSelection, makeRequest, viewrequests, fulfillRequest, Connected MongoDB and implemented all server endpoints using MongoDB. Implement register and login functionality with MongoDB. Help with adding one contact info per DC. General QOL + stylistic improvements. Add example documents for MongoDB collections in milestone3.md, worked on final.md.
@@ -183,6 +183,12 @@ Alex Preston: Made edits to interactions between users and data, made a draft of
 Roshan Shetty: Made a draft of the wireframe, initially made all html files, created signin, signup, ngo-food-list html files, helped with various js making use of endpoints for functionality, made certain changes to the html files, setup.md, and milestone2.md, setup the multi dc, multi contact, and multi request functionality for the dc and ngo sides. Made changes to milestone3.md, worked on final.md.
 
 ## Conclusion:
-The goal of the application was to provide simple communication between UMass Dining Commons (DC's) and nonprofit organizations (NGO's) to allow the NGO's to pick up leftover food from the DC's so the food goes to those in need, rather than being wasted. This was achieved by allowing each DC to list the food they have leftover at the end of each day/meal (including quantities, nutrional & allergen information, etc.) and NGO's specifying which food they are interested in picking up from which DC and when they will pick the food up. \
-Once an NGO selects a food item, it is no longer displayed to the other NGO's in order to prevent double booking. 
-With our project finished, we can say that we have successfully built our application that achieves this goal. 
+The goal of the application was to provide simple communication between UMass Dining Commons (DC's) and nonprofit organizations (NGO's) to allow the NGO's to pick up leftover food from the DC's so the food goes to those in need, rather than being wasted. This was achieved by allowing each DC to list the food they have leftover at the end of each day/meal (including quantities, nutrional & allergen information, etc.) and NGO's specifying which food they are interested in picking up from which DC and when they will pick the food up.
+
+This project can be seen as the culmination of CS326 and thus pulled from all areas of web programming that we have learned about this semester. All of the major aspects of this project, such as creating and stlying HTML pages, API endpoints, Databases, Authorization, and more, were all learned about in class and practiced in homeworks, so this project was a way for us to combine and use all of the skills we have been developing in this class.
+
+Although we had practice with many of the skils required for this project, that does not mean that it came without difficulties. Steps such as creating API endpoints, linking Heroku and MongoDB to our project, implementing user authentication, and more, required further learning from class materials as well as online resources such as official documentation (MDN, MongoDB Docs, etc) to be able to properly and effectively introduce each aspect of our project. Some of the technical difficulties we faced included linking our application to Heroku and allowing it to access the data that is stored in MongoDB, making fetch calls that properly pass or retrieve information to/from MongoDB, and setting up the user authentication to work with DB storage, rather than storing the information locally.
+
+In terms of knowledge that we would have liked to have at the start of this project, nothing in particular comes to mind. All of the major required aspects of the project were taught in class and practiced in homework assignments, so nothing came as a complete surprise to us. While it would be easy for us to say "we would've liked to have a better understand of Heroku/MongoDB applications/.../all of the stuff we had to learn and figure out on our own to make this project, and that would have made this project easier for us", this is not practical. We had a strong enough understanding of all topics necessary going into this project, and simply the best ways to learn the things we did from completing this project is were the ways we did learn them: trial and error, troubleshooting, and generally learning how to fix things. So yes, it would have been nice to go into this project as a Heroku or MongoDB expert, but that is not how the real world works, and we have no complaints about things we would have liked to known before starting this project that would have helped us.
+
+With our project finished, we can say that we have successfully built our application that achieves our goals. 
