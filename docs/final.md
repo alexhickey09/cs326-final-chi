@@ -130,7 +130,8 @@ Allows DC's to view all current requests that have been made. Once an NGO has pi
       }
     * Relationships: None.
 
-## URL Routes/Mappings
+## URL Routes/Mappings:
+
 
 ## Authentication/Authorization:
     * Users register with their email and password.
@@ -143,3 +144,10 @@ Allows DC's to view all current requests that have been made. Once an NGO has pi
     Roshan Shetty: Made a draft of the wireframe, initially made all html files, created signin, signup, ngo-food-list html files, helped with various js making use of endpoints for functionality, made certain changes to the html files, setup.md, and milestone2.md, setup the multi dc, multi contact, and multi request functionality for the dc and ngo sides. Made changes to milestone3.md, worked on final.md.
 
 ## Conclusion:
+The goal of the application was to provide simple communication between UMass Dining Commons (DC's) and nonprofit organizations (NGO's) to allow \
+the NGO's to pick up leftover food from the DC's so the food goes to those in need, rather than getting wasted. This was achieved by having each DC may list \
+the food they have leftover at the end of each day/meal (including quantities, nutrional & allergen information, etc.) and NGO's \
+may specify which food they are interested in picking up from which DC and when they will pick the food up. Once they select the \
+food, it is no longer displayed to the other NGOs, preventing double booking. Our application will have a static map that displays \
+DC locations on campus, and NGO's can click on any DC to see the food they have. \
+With our project finished, we can say that we have successfully built our application that achieve this goal. 
