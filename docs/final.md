@@ -182,7 +182,7 @@ Alex Preston: Made edits to interactions between users and data, made a draft of
 
 Roshan Shetty: Made a draft of the wireframe, initially made all html files, created signin, signup, ngo-food-list html files, helped with various js making use of endpoints for functionality, made certain changes to the html files, setup.md, and milestone2.md, setup the multi dc, multi contact, and multi request functionality for the dc and ngo sides. Made changes to milestone3.md, worked on final.md.
 
-### Rubric
+#### Rubric
 Each category in the rubric may be graded based on the following general guidelines:
 A - Exceeds expectations. Work is top-quality. Little to no minor errors exist.
 B - Meets expectations. Small imperfections may be present, but nothing that tarnishes overall quality or ruins an experience. Effort was clearly put in.
@@ -195,13 +195,13 @@ F - Fails to meet basic requirements. Problems exist that prevent proper usage o
 |Users should be able to register an account either as a DC or NGO and then login with it. If someone tries to use an incorrect login or make an account for an email that already exists it should send them back to the same page they are on.|
 |Authentication is secure: preventative measures are taken against malicious attacks, user data is stored securely to prevent private information from being leaked.|
 
-|DC-Side
-When a user clicks on one of the DC buttons it should only show the food, requests, and contact info for that DC on the subsequent pages.|
+|DC-Side|
+|When a user clicks on one of the DC buttons it should only show the food, requests, and contact info for that DC on the subsequent pages.|
 |All necessary features that a real UMass DC employee may want to use are present and function properly. Users may list leftover food, update contact information, and view/fulfill requests for food from NGO’s.|
 
 |NGO-Side|
-|When a user chooses a DC to view, subsequent pages only show information for that specific DC.
-All necessary features that a real NGO employee may want to use are present and function properly. Users may view and select leftover food that has been posted by DC’s, view contact information, and make a request for food from DC’s.|
+|When a user chooses a DC to view, subsequent pages only show information for that specific DC.|
+|All necessary features that a real NGO employee may want to use are present and function properly. Users may view and select leftover food that has been posted by DC’s, view contact information, and make a request for food from DC’s.|
 
 |General Design|
 |Design is modern, intuitive, and effective. Application has all necessary features to carry out its function.|
