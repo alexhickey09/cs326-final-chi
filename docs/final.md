@@ -191,6 +191,7 @@ D - Many requirements are not satisfied. Category is met at a bare minimum stand
 F - Fails to meet basic requirements. Problems exist that prevent proper usage of the application. 
 
 |Authentication|
+|  ----  | ----  |
 |Users should be able to register an account either as a DC or NGO and then login with it. If someone tries to use an incorrect login or make an account for an email that already exists it should send them back to the same page they are on.|
 |Authentication is secure: preventative measures are taken against malicious attacks, user data is stored securely to prevent private information from being leaked.|
 
